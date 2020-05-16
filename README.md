@@ -9,8 +9,15 @@
 <p align="center"> <img src="https://img.shields.io/badge/-Technologies%20Used-blue" style="max-width:50%;"> </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Image%20processing-1.2-green" style="max-width:50%;">
+  <img src="https://img.shields.io/badge/CSS-3.0-blue" style="max-width:50%;">  
+  <img src="https://img.shields.io/badge/HTML-5.2-green" style="max-width:50%;">
+  <img src="https://img.shields.io/badge/JavaScript-1.8.5-blue" style="max-width:50%;">
+  <img src="https://img.shields.io/badge/ReactJS-16.12.0-yellowgreen" style="max-width:50%;">
+  <img src="https://img.shields.io/badge/Redux-4.0.5-brightgreen" style="max-width:50%;">
   <img src="https://img.shields.io/badge/React%20Activestorage%20provider-0.8.0-orange" style="max-width:50%;">
+  <img src="https://img.shields.io/badge/Redux%20Thunk-2.3.0-yellowgreen" style="max-width:50%;">
+  <img src="https://img.shields.io/badge/React%20Google%20Maps-9.4.5-lightgrey" style="max-width:50%;">
+  <img src="https://img.shields.io/badge/axios-0.19.1-red" style="max-width:50%;">
  </p>
   
  <p align="center"> <img src="https://img.shields.io/badge/-Notices-blue" style="max-width:50%;"> </p>
