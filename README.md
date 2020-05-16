@@ -124,34 +124,12 @@
  </ul>
 </p>
   
-   <h2 id="backend-installation">Backend installlation</h2>
-
-   <p>FindStation backend is biult with Ruby(2.7.0), Rails(^6.0.2), PostgreSQL(0.18) for PostgreSQL 12.1, Bcrypt(^3.1.7), Image processing(^1.2) from Active Storage, JWT, Active model serializer(^0.10.0), and Dotenv-rails(^2.7). 
-  
- <ul> 
-  <li>Clone <a href="https://github.com/chinomnsoawazie/station-locate-backend">FindStation backend</a>
-    <ul>
-      <li>Ensure you have these uncommented or added in your gemfile before running <code>bundle install</code>
-      <ul>
-         <li><code>gem 'jwt'</code></li>
-         <li><code>gem 'active_model_serializers', '~> 0.10.0'</code></li>
-         <li><code>gem "dotenv-rails", "~> 2.7"</code></li>
-         <li><code>gem 'bcrypt', '~> 3.1.7'</code></li>
-         <li><code>gem 'image_processing', '~> 1.2'</code></li>
-         <li><code>gem 'pg', '>= 0.18'</code></li>
-         <li><code>gem 'rails', '~> 6.0.2'</code></li>
-         <li><code>ruby '2.7.0'</code></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>In your terminal, run <code>rvm use ruby-2.7.0</code> to make sure you are using the correct Ruby version(this assumes you already had Ruby 2.7.0 installed)</li>
-  <li>Run <code>bundle install</code> to install all gems/dependancies required for FindStation</li>
-  <li>Run <code>rails db:create</code> to create a local PostgresQL database</li>
-  <li>Run <code>rails db:migrate</code>to create the tables/columns required for proper FindStation functionality</li>
-  <li>Create a file called .env in the backend directory (/station_locate_backend/) and add HMAC_SECRET = "<insert a secret string here>"(this is for your JWT token), NREL_API_KEY= "<insert API Token you were issued by National Renewable Energy Laboratory>", and GOOGLE_MAPS_API_KEY= "<insert API Token you were issued by Google maps API>" to the file</li>
-   <li>Head over to  the <a href="https://github.com/chinomnsoawazie/station-locate-frontend/blob/master/README.md#frontend-installation">frontend</a> for instructions on how to install the frontend</li>
-
+  <h2 id="frontend-installation">Frontend installation</h2>
+<p>To install the front end of AfroPanTrack, do the following;
+ <ul>
+  <li>Clone the <a href="https://github.com/chinomnsoawazie/AfroPanTrack-frontend">Frontend</a></li>
+  <li>Ensure all relevant packages from the prerequisites section above are installed by running <code>npm install</code> from your terminal</li>
+  <li>Head over to <a href="https://github.com/chinomnsoawazie/AfroPanTrack-backend">Backend</a> and follow the instructions to install the backend API</li>
  </ul>
 </p>
 
