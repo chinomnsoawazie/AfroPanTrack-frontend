@@ -52,8 +52,7 @@
     </li>   
     <li><a href="#summary-of-files">Summary of files</a>
       <ul>
-          <li><a href="#internal-file-structure">Internal file structure</a></li>
-          <li><a href="#internal-dataset">Internal dataset</a></li>
+          <li><a href="#external-dataset">External dataset</a></li>
       </ul>
     </li>
    <li><a href="#planned-improvements">Planned improvements</a></li>
