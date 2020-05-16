@@ -95,7 +95,7 @@
   
   
  <h1 id="goals">Goals</h1>
-  <p>The goals are to provide a reliable platform for information on pandemics in Africa and enable asking/requesting for help.</p>
+  <p>The goal is to provide a reliable platform for information on pandemics in Africa and enable asking/requesting for help.</p>
   
  <a href="#table-of-contents"> <img src="https://img.shields.io/badge/-Back%20To%20Table%20of%20Contents-lightgrey" style="max-width:50%;"></a>
  
