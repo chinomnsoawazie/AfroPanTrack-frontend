@@ -142,23 +142,15 @@ To acess the frontend, go to <code>http://localhost:3001</code></p>
 <a href="#table-of-contents"> <img src="https://img.shields.io/badge/-Back%20To%20Table%20of%20Contents-lightgrey" style="max-width:50%;"></a>
 
 <h1 id="summary-of-files">Summary of files</h1>
-   <h2 id="internal-file-structure">Internal file structure</h2>
+    <h2 id="external-dataset">External datatset</h2>
     <p>
  <ul>
-  <li><a href="https://github.com/chinomnsoawazie/station-locate-backend/tree/master/station_locate_backend/app">App:</a> Primary location for backend API configuration
-    <ul>
-      <li><a href="https://github.com/chinomnsoawazie/station-locate-backend/tree/master/station_locate_backend/app/controllers">controllers:</a> Render/RESTful/CRUD methods that carry our actoins including authorizations, checks, etc</li>
-       <li><a href="https://github.com/chinomnsoawazie/station-locate-backend/tree/master/station_locate_backend/app/serializers">serializers:</a>Filters for the backend API</li>
-        <li><a href="https://github.com/chinomnsoawazie/station-locate-backend/tree/master/station_locate_backend/app/models">models:</a>Active Record Associations/Validation methods</li>
-    </ul>
-   
-   </li>
-   <li><a href="https://github.com/chinomnsoawazie/station-locate-backend/tree/master/station_locate_backend/config"> config:</a> Start/Backend configuration files for routes, image processing, etc</li>
-  <li><a href="https://github.com/chinomnsoawazie/station-locate-backend/tree/master/station_locate_backend/db"> db:</a> Database configuration files</li>
-  <li><a href="https://github.com/chinomnsoawazie/station-locate-backend/blob/master/station_locate_backend/Gemfile"> Gemfile:</a> Prerquisites and dependencies</li>
+   <li><a href="https://developers.google.com/maps/documentation/javascript/tutorial"> Google Maps JavaScript Api documentation:</a>  You get the map data by sending the request to <code>https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap</code></li>
+  <li><a href="https://developers.google.com/maps/documentation/geocoding/intro#GeocodingResponses"> Google Maps Geocoding information documentation:</a>  You get the geocode information by sending the request to <code>https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,
++Mountain+View,+CA&key=YOUR_API_KEY</code></li>
+
 </ul>
 </p>
-
 <a href="#table-of-contents"> <img src="https://img.shields.io/badge/-Back%20To%20Table%20of%20Contents-lightgrey" style="max-width:50%;"></a>
 
 
