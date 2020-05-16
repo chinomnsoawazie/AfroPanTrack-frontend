@@ -113,10 +113,16 @@
    
    <h1 id="installation">Installation</h1>
    <h2 id="prerequisites">Prerequisites</h2>
-   <ul>
-     <li>Go to<a href="https://developers.google.com/maps/documentation/javascript/get-api-key"> Google maps JavaScript API key documentation page</a> to get an API key that will enable use any number of the about 14 different APIs for google maps services</li>
-  <li>Have an email or create one specifically for the app</li>
-  </ul>
+      <p>AfroPanTrack frontend is biult with React(^16.12.0), Axios(^0.19.1), google maps react(^2.0.2"), react google maps(^9.4.5), redux(^4.0.5), and redux thunk(^2.3.0). Ensure you have installed these packages with the specified versions or newer ones before cloning this repo. You can find their official installation guides below;
+ <ul>
+  <li><a href="https://reactjs.org/docs/getting-started.html#create-a-new-react-app">React</a></li>
+  <li><a href="https://www.npmjs.com/package/axios">Axios</a></li>
+  <li><a href="https://www.npmjs.com/package/google-maps-react">Google maps react</a></li>
+  <li><a href="https://www.npmjs.com/package/react-google-maps">React google maps</a></li>
+  <li><a href="https://www.npmjs.com/package/redux">React Redux</a></li>
+  <li><a href="https://www.npmjs.com/package/redux-thunk">Redux Thunk</a></li>
+ </ul>
+</p>
   
    <h2 id="backend-installation">Backend installlation</h2>
 
