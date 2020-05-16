@@ -9,15 +9,8 @@
 <p align="center"> <img src="https://img.shields.io/badge/-Technologies%20Used-blue" style="max-width:50%;"> </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Ruby-2.7.0-red" style="max-width:50%;">
-  <img src="https://img.shields.io/badge/PostgreSQL-12.1-orange" style="max-width:50%;">
   <img src="https://img.shields.io/badge/Image%20processing-1.2-green" style="max-width:50%;">
   <img src="https://img.shields.io/badge/React%20Activestorage%20provider-0.8.0-orange" style="max-width:50%;">
-  <img src="https://img.shields.io/badge/Ruby%20on%20Rails-6.0.2-red" style="max-width:50%;">
-  <img src="https://img.shields.io/badge/Active%20model%20serializers-0.10.0-yellow" style="max-width:50%;">
-  <img src="https://img.shields.io/badge/Dotenv%20Rails-2.7-orange" style="max-width:50%;">
-  <img src="https://img.shields.io/badge/Bycrypt-3.1.7-blue" style="max-width:50%;">
-  <img src="https://img.shields.io/badge/JWT-1.5.4-red" style="max-width:50%;">
  </p>
   
  <p align="center"> <img src="https://img.shields.io/badge/-Notices-blue" style="max-width:50%;"> </p>
