@@ -11,6 +11,7 @@ import AdminPage from './AdminPage'
 import ReportInfection from '../forms/ReportInfection'
 import ModeratorPanel from './ModeratorPanel'
 import UserPanel from './UserPanel'
+import { QuarantineCenters } from '../components/QuarantineCenters'
 
 const MainContainer = (props) => {
     return (
@@ -26,6 +27,9 @@ const MainContainer = (props) => {
             <Route exact path='/moderator-panel' render = { () => <ModeratorPanel />} />
             <Route exact path='/user-panel' render = { () => <UserPanel />} />
             <Route exact path='/report-infection' render = { () => <ReportInfection appUserLocation={props.appUserLocation} user_id={props.user_id} appUserCoordinates={props.appUserCoordinates} dispatch={props.dispatch} push={props.history.push} user={props.user}/>} />
+            <Route exact path='/quarantine-map' render = { () => <QuarantineCenters allReports={props.allReports} currentCountryCenter={props.currentCountryCenter} apiKey={props.google_maps_api_key}/>} />
+
+
 
 
 

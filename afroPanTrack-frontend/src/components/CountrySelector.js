@@ -1,6 +1,8 @@
 import React from 'react'
 import { centerOfCountries } from '../components/CenterOfCountries'
 import { setCurrentCountryCenter } from '../redux/actions'
+import {connect} from 'react-redux'
+
 
 
 const CountrySelector = (props) => {
@@ -19,6 +21,7 @@ const CountrySelector = (props) => {
         event.preventDefault()
         push('/infections-map')
     }
+    console.log(props)
 
     return (
         <div className='forms'>
@@ -33,10 +36,23 @@ const CountrySelector = (props) => {
                    {centerOfCountries.map(country => <option key={country.id} value={country.id}>{country.name}</option>)}
             </select> 
         </div>
+
+        {props.viewInfectionMap ? 
         <input className='page-buttons' type="submit" value="View Infection Map" />
+        :
+        <input className='page-buttons' type="submit" value="View Quarantine Centres" />
+    }
+
+
         </form>
     </div>
     )
 }
 
-export default CountrySelector
+const mapStateToProps = (state) => {
+    return {
+        viewInfectionMap: state.allViewsInfo.viewInfectionMap,
+    }
+}
+
+export default connect(mapStateToProps)(CountrySelector)

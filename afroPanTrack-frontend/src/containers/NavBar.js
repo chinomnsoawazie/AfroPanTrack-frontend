@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {logout} from '../redux/actions'
+import {logout, setQuarantineCentersView, setInfectionsMapView} from '../redux/actions'
 
 
 const NavBar = (props) => {
@@ -17,6 +17,18 @@ const NavBar = (props) => {
         }
     }
 
+
+    const handleViewInfectionMap = () => {
+        setInfectionsMapView(props.dispatch)
+
+        props.history.push('/select-country-only')
+    }
+
+    const handleViewQuarantineCenters = () => {
+        setQuarantineCentersView(props.dispatch)
+        props.history.push('/select-country-only')
+    }
+
  
 
     return (
@@ -25,17 +37,17 @@ const NavBar = (props) => {
 
              
                 <div className='column'>
-                    <button onClick={() => props.history.push('/select-country-only')} className="nav-buttons">COVID-19 infection map</button>
-                <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Government Updates</button>
+                    <button onClick={handleViewInfectionMap} className="nav-buttons">COVID-19 infection map</button>
+                <button onClick={() => props.history.push('/government-updates')} className="nav-buttons">Government Updates</button>
                 </div>
 
                 <div className='column'>
                     <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Request help</button>
-                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Batter stuff</button>
+                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Barter stuff</button>
                 </div>
                 <div className='column'>
                     <button onClick={reportInfection} className="nav-buttons">Report an infection</button>
-                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Quarantine Centers</button>
+                    <button onClick={handleViewQuarantineCenters} className="nav-buttons">Quarantine Centers</button>
 
                 </div>
                 <div className='column'>

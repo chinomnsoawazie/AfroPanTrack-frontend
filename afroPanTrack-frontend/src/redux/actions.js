@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES} from '../redux/actionTypes'
+import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW} from '../redux/actionTypes'
 import axios from 'axios'
 import Geocode from 'react-geocode'
 
@@ -12,6 +12,19 @@ export const setAPIKeys = (dispatch) =>{
     .catch((error) =>{
         console.log('Error:', error)
     })
+}
+
+export const resetViews = (dispatch) => {
+  dispatch({type: RESET_VIEWS})
+}
+
+export const setInfectionsMapView = (dispatch) =>{
+  console.log("setting infections view", dispatch)
+  dispatch({type: SET_INFECTIONS_VIEW})
+}
+
+export const setQuarantineCentersView = (dispatch) => {
+  dispatch({type: SET_QUARANTINE_VIEW})
 }
 
 export const setReports = (dispatch) => {

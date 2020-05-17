@@ -11,10 +11,12 @@ import thunk from 'redux-thunk'
 
 import userReducer from '../src/redux/userReducer'
 import reportReducer from './redux/reportsReducer';
+import viewsReducer from './redux/viewsReducer';
 
 const rootReducer = combineReducers({
     allUserInfo: userReducer,
-    allReportInfo: reportReducer
+    allReportInfo: reportReducer,
+    allViewsInfo: viewsReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
