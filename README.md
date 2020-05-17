@@ -159,6 +159,8 @@ To acess the frontend, go to <code>http://localhost:3001</code></p>
   <li>Implement login-attempts lockout</li>
   <li>Implement email and text-based confirmations for password and other sensitive account updates</li>
    <li>Implement RSS feed on current pandemics</li>
+    <li>Implement bataring so users can batar goods and/or services</li>
+
 
  </ul>
 </p>
