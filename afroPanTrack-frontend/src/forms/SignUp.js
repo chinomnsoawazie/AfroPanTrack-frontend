@@ -52,7 +52,7 @@ export class SignUp extends Component {
                     "state": this.state.state,
                     "city": this.state.city,
                     "street_address": this.state.street_address,
-                    "admin": true
+                    // "admin": true
                 }
                 createUser(user, props)
             }else{

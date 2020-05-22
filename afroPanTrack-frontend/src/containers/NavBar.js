@@ -38,22 +38,25 @@ const NavBar = (props) => {
              
                 <div className='column'>
                     <button onClick={handleViewInfectionMap} className="nav-buttons">COVID-19 infection map</button>
-                <button onClick={() => props.history.push('/government-updates')} className="nav-buttons">Government Updates</button>
+                    <button onClick={reportInfection} className="nav-buttons">Report an infection</button>
                 </div>
 
+                <div className='column'>
+                    <button onClick={handleViewQuarantineCenters} className="nav-buttons">Quarantine Centers</button>
+                    <button onClick={() => props.history.push('/government-updates')} className="nav-buttons">Government Updates</button>
+                </div>
+
+                <div className='column'>
+                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">COVID-19 facts</button>
+                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Global COVID-19 updates</button>
+                </div>
+                
                 <div className='column'>
                     <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Request help</button>
                     <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Barter stuff</button>
                 </div>
-                <div className='column'>
-                    <button onClick={reportInfection} className="nav-buttons">Report an infection</button>
-                    <button onClick={handleViewQuarantineCenters} className="nav-buttons">Quarantine Centers</button>
 
-                </div>
-                <div className='column'>
-                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">COVID-19 facts</button>
-                <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Global COVID-19 updates</button>
-                </div>
+
 
                 {loggedIn ?
                <>
@@ -63,7 +66,7 @@ const NavBar = (props) => {
                 </div>
                 <div className='column'>
                     <button onClick={() => props.history.push('/user-profile')} className="nav-buttons">Profile</button>
-                    <button onClick={() => logout(props.dispatch)} className="nav-buttons">logout</button>
+                    <button onClick={() => logout(props.dispatch, props.history.push)} className="nav-buttons">logout</button>
                 </div>
                </>
                 :

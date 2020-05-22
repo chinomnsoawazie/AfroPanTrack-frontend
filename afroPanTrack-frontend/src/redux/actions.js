@@ -92,8 +92,9 @@ export const login = (user, push, dispatch) =>{
         })
 }
 
-export const logout = (dispatch) => {
+export const logout = (dispatch, push) => {
   dispatch({type: LOGOUT})
+  push('/')
 }
 
 
