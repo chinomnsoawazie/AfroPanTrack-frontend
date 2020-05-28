@@ -12,25 +12,46 @@ import ReportInfection from '../forms/ReportInfection'
 import ModeratorPanel from './ModeratorPanel'
 import UserPanel from './UserPanel'
 import { QuarantineCenters } from '../components/QuarantineCenters'
+import Barter from '../components/Barter'
+import CovidFacts from '../components/CovidFacts'
+import GlobalCovidUpdates from '../components/GlobalCovidUpdates'
+import OfferHelp from '../components/OfferHelp'
+import RequestHelp from '../components/RequestHelp'
+import GovtUpdates from '../components/GovtUpdates'
+
 
 const MainContainer = (props) => {
+    const {loggedIn, first_name, phone_no, admin, moderator, google_maps_api_key, token, appEmail,
+            email_confirmed, allowed_to_request, allowed_to_report, allReports, dispatch,
+            currentCountryCenter, appUserLocation, user_id, appUserCoordinates, user, currentCountry} = props
     return (
         <>
         <Switch>
-            <Route exact path='/' render = { () => <HomePage />} />
-            <Route exact path='/login' render = { () => <Login push={props.history.push} dispatch={props.dispatch} google_maps_api_key={props.google_maps_api_key}/>} />
-            <Route exact path='/signup' render = { () => <SignUp push={props.history.push} dispatch={props.dispatch}/>} />
-            <Route exact path='/infections-map' render = { () => <InfectionsMapCard allReports={props.allReports} currentCountryCenter={props.currentCountryCenter} apiKey={props.google_maps_api_key}/>} />
-            <Route exact path='/select-country-only' render = { () => <CountrySelector push={props.history.push} dispatch={props.dispatch}/> } />
-            <Route exact path='/request_confirmation' render = { () => <RequestConfirmation />} />
+
+        {/*USER ISSUES */}
+            <Route exact path='/login' render = { () => <Login push={props.history.push} dispatch={dispatch} google_maps_api_key={google_maps_api_key}/>} />
+            <Route exact path='/signup' render = { () => <SignUp push={props.history.push} dispatch={dispatch}/>} />
             <Route exact path='/admin-panel' render = { () => <AdminPage />} />
             <Route exact path='/moderator-panel' render = { () => <ModeratorPanel />} />
             <Route exact path='/user-panel' render = { () => <UserPanel />} />
-            <Route exact path='/report-infection' render = { () => <ReportInfection appUserLocation={props.appUserLocation} user_id={props.user_id} appUserCoordinates={props.appUserCoordinates} dispatch={props.dispatch} push={props.history.push} user={props.user}/>} />
-            <Route exact path='/quarantine-map' render = { () => <QuarantineCenters allReports={props.allReports} currentCountryCenter={props.currentCountryCenter} apiKey={props.google_maps_api_key}/>} />
 
+            {/*MAP ISSUES */}
+            <Route exact path='/infections-map' render = { () => <InfectionsMapCard allReports={allReports} currentCountryCenter={currentCountryCenter} apiKey={google_maps_api_key}/>} />
+            <Route exact path='/quarantine-map' render = { () => <QuarantineCenters allReports={allReports} currentCountryCenter={currentCountryCenter} apiKey={google_maps_api_key}/>} />
 
+            {/*ENABLING COMPONENTS*/}
+            <Route exact path='/select-country-only' render = { () => <CountrySelector push={props.history.push} dispatch={props.dispatch}/> } />
+            <Route exact path='/request_confirmation' render = { () => <RequestConfirmation />} />
 
+            {/*PAGES */}
+            <Route exact path='/' render = { () => <HomePage />} />
+            <Route exact path='/report-infection' render = { () => <ReportInfection appUserLocation={appUserLocation} user_id={user_id} appUserCoordinates={appUserCoordinates} dispatch={dispatch} push={props.history.push} user={user} currentCountry={currentCountry}/>} />
+            <Route exact path='/barter' render = { () => <Barter /> } />
+            <Route exact path='/covid-facts' render = { () => <CovidFacts />} />
+            <Route exact path='/global-covid-updates' render = { () => <GlobalCovidUpdates />} />
+            <Route exact path='/offer-help' render = { () => <OfferHelp />} />
+            <Route exact path='/request-help' render = { () => <RequestHelp /> } />
+            <Route exact path='/govt-updates' render = { () => <GovtUpdates />} />
 
 
         </Switch>
@@ -56,7 +77,8 @@ const mapStateToProps = (state) => {
         appUserLocation: state.allReportInfo.appUserLocation,
         user_id: state.allUserInfo.user_id,
         appUserCoordinates: state.allReportInfo.appUserCoordinates,
-        user: state.allUserInfo.user
+        user: state.allUserInfo.user,
+        currentCountry: state.allUserInfo.currentCountry
     }
 }
 
