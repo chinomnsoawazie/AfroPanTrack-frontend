@@ -73,12 +73,12 @@ const mapStateToProps = (state) => {
         allowed_to_request: state.allUserInfo.allowed_to_request,
         allowed_to_report: state.allUserInfo.allowed_to_report,
         allReports: state.allReportInfo.allReports,
-        currentCountryCenter: state.allReportInfo.currentCountryCenter,
-        appUserLocation: state.allReportInfo.appUserLocation,
+        currentCountryCenter: state.allLocationInfo.currentCountryCenter,
+        appUserLocation: state.allLocationInfo.appUserLocation,
         user_id: state.allUserInfo.user_id,
         appUserCoordinates: state.allReportInfo.appUserCoordinates,
         user: state.allUserInfo.user,
-        currentCountry: state.allUserInfo.currentCountry
+        currentCountry: state.allLocationInfo.SelectedCountry
     }
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { centerOfCountries } from '../components/CenterOfCountries'
+import {countriesList, statesList, citiesList} from '../components/CountriesStatesAndCities'
 import { setCurrentCountryCenter, setCurrentCountry } from '../redux/actions'
 import {connect} from 'react-redux'
 
@@ -9,19 +10,26 @@ const CountrySelector = (props) => {
     const {push, dispatch, viewBarters, viewGovtUpdates, viewHelpRequests, viewInfectionMap, viewQuarantineMap, signUp, reportAnInfection} = props
 
     const handleChangeCountry = (event) => {
+        console.log(event.target.value)
+        let country = countriesList.find(({id}) => id.toString() === event.target.value)
+        console.log(country)
         if(event.target.value === 'Select country'){
             alert('Please chose a valid country')
         }else if(event.target.value === '999999'){
             let selectedCountry = 'Others'
             setCurrentCountry(dispatch, selectedCountry)
         }else{
+            //country from above is not useful for the next 6 lines of code as it doesn't have latitude
             let selectedCountry = centerOfCountries.find(({id}) => id.toString() === event.target.value)
             let selectedCountryCenter = {
                 lat: selectedCountry.lat,
                 lng: selectedCountry.lng
             }
+            let country = countriesList.find(({id}) => id.toString() === event.target.value)
+
             setCurrentCountryCenter(selectedCountryCenter, dispatch)
-            setCurrentCountry(dispatch, selectedCountry.name)
+            //will use country from above as it comes with more needed parameters
+            setCurrentCountry(dispatch, country)
         }
     }
 

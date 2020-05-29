@@ -21,8 +21,6 @@ const initialState = {
     moderator: false,
     allowed_to_request: false,
     allowed_to_report: false
-
-
 }
 
 const userReducer = (state = initialState, action) =>{

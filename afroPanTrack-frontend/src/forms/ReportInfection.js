@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {countriesList, statesList, citiesList} from '../components/CountriesStatesAndCities'
 import { createReport } from '../redux/actions'
 
 export class ReportInfection extends Component {
@@ -64,8 +65,43 @@ export class ReportInfection extends Component {
         }
     }
 
+
+    displayNewCountry = (event) => {
+        let newCountry = countriesList.find(({id}) => id.toString() === this.props.currentCountryID)
+        if(this.props.currentCountryID){
+            return newCountry.name
+        }else{
+            return 'No country selected'
+        }
+    }
+
+    displayNewState = (event) => {
+        let newState = statesList.find(({id}) => id.toString() === this.props.currentStateID)        
+        if(this.props.currentStateID){
+            return newState.name
+        }else{
+            return 'No state selected'
+        }
+    }
+
+    displayNewCity = (event) => {
+        let newCity = citiesList.find(({id}) => id.toString() === this.props.currentCityID)        
+        if(this.props.currentCityID){
+            if(newCity){
+                return newCity.name
+            }else{
+                return 'State has no city'
+            }
+        }else{
+            return 'No city selected'
+        }
+    }
+
     render() {
+        console.log(this.props.currentCountry)
         console.log(this.props)
+        // let states = statesList.filter(state => state.country_id === this.props.currentCountryID)
+        // let cities = citiesList.filter(city => city.state_id === this.props.currentStateID)
         return (
             <div className='entry-point'>
             <form onSubmit={this.handleSubmit}>
@@ -132,9 +168,16 @@ export class ReportInfection extends Component {
                     </select>
                 </div><br/>
 
-
                 <strong>Location(you can type it in or use your current location)</strong><br/><br/>
 
+                <div className='row'>
+                   <label>
+                       <strong>Country</strong>
+                   </label>
+               </div>
+               <div className='row'>
+                   <p>{this.props.currentCountry.name}</p>
+               </div><br/>
 
                <div className='row'>
                    <label>

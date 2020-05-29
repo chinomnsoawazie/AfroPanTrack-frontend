@@ -8,7 +8,6 @@ const initialState = {
     viewBarters: false,
     reportAnInfection: false,
     signUp: false,
-    CurrentCountry: ''
 }
 
 const viewsReducer = (state = initialState, action) =>{
@@ -111,12 +110,6 @@ const viewsReducer = (state = initialState, action) =>{
             viewBarters: false,
             reportAnInfection: false,
         }
-
-        case SET_CURRENT_COUNTRY:
-            return {
-                ...state,
-                CurrentCountry: action.payload
-            }
 
         default:
         return state
