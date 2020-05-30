@@ -21,8 +21,7 @@ import GovtUpdates from '../components/GovtUpdates'
 
 
 const MainContainer = (props) => {
-    const {loggedIn, first_name, phone_no, admin, moderator, google_maps_api_key, token, appEmail,
-            email_confirmed, allowed_to_request, allowed_to_report, allReports, dispatch,
+    const {loggedIn, google_maps_api_key, allReports, dispatch, currentCityID, currentStateID,
             currentCountryCenter, appUserLocation, user_id, appUserCoordinates, user, currentCountry} = props
     return (
         <>
@@ -45,7 +44,7 @@ const MainContainer = (props) => {
 
             {/*PAGES */}
             <Route exact path='/' render = { () => <HomePage />} />
-            <Route exact path='/report-infection' render = { () => <ReportInfection appUserLocation={appUserLocation} user_id={user_id} appUserCoordinates={appUserCoordinates} dispatch={dispatch} push={props.history.push} user={user} currentCountry={currentCountry}/>} />
+            <Route exact path='/report-infection' render = { () => <ReportInfection appUserLocation={appUserLocation} user_id={user_id} appUserCoordinates={appUserCoordinates} dispatch={dispatch} push={props.history.push} user={user} currentCountry={currentCountry} currentStateID={currentStateID} currentCityID={currentCityID}/>} />
             <Route exact path='/barter' render = { () => <Barter /> } />
             <Route exact path='/covid-facts' render = { () => <CovidFacts />} />
             <Route exact path='/global-covid-updates' render = { () => <GlobalCovidUpdates />} />
@@ -62,23 +61,27 @@ const MainContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         loggedIn: state.allUserInfo.loggedIn,
+        user: state.allUserInfo.user,
         first_name: state.allUserInfo.first_name,
+        user_id: state.allUserInfo.user_id,
         phone_no: state.allUserInfo.phone_no,
         admin: state.allUserInfo.admin,
+        appEmail: state.allUserInfo.appEmail,
         moderator: state.allUserInfo.moderator,
         google_maps_api_key: state.allUserInfo.google_maps_api_key,
         token: state.allUserInfo.token,
-        appEmail: state.allUserInfo.appEmail,
         email_confirmed: state.allUserInfo.email_confirmed,
         allowed_to_request: state.allUserInfo.allowed_to_request,
         allowed_to_report: state.allUserInfo.allowed_to_report,
         allReports: state.allReportInfo.allReports,
-        currentCountryCenter: state.allLocationInfo.currentCountryCenter,
         appUserLocation: state.allLocationInfo.appUserLocation,
-        user_id: state.allUserInfo.user_id,
         appUserCoordinates: state.allReportInfo.appUserCoordinates,
-        user: state.allUserInfo.user,
-        currentCountry: state.allLocationInfo.SelectedCountry
+        currentCountry: state.allLocationInfo.SelectedCountry,
+        currentCountryCenter: state.allLocationInfo.currentCountryCenter,
+        loggedInUserCountry: state.allLocationInfo.loggedInUserCountry,
+        currentCountryID: state.allLocationInfo.currentCountryID,
+        currentCityID: state.allLocationInfo.currentCityID,
+        currentStateID: state.allLocationInfo.currentStateID
     }
 }
 

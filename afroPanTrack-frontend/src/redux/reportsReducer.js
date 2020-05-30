@@ -1,4 +1,4 @@
-import { SET_REPORTS, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES } from '../redux/actionTypes'
+import { SET_REPORTS } from '../redux/actionTypes'
 
 const initialState = {
     allReports: '',

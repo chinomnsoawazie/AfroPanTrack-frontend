@@ -2,13 +2,13 @@ import {SET_CURRENT_COUNTRY, RESET_LOCATION_PARAMS, SET_CURRENT_COUNTRY_CENTER, 
 
 const initialState = {
     SelectedCountry: '',
-    currentCountryCenter: {},
-    appUserLocation: {},
+    currentCountryCenter: '',
     appUserCoordinates: '',
+    appUserLocation: '',
     loggedInUserCountry: '',
-
-
-
+    currentCountryID: '',
+    currentCityID: '',
+    currentStateID: '',
 }
 
 const locationsReducer = (state = initialState, action) =>{
@@ -26,7 +26,6 @@ const locationsReducer = (state = initialState, action) =>{
             currentCityID: '',
             currentStateID: '',
         }
-
 
         case SET_CURRENT_COUNTRY:
         console.log(action.payload)

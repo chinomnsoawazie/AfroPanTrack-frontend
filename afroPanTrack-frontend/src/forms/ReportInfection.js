@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {countriesList, statesList, citiesList} from '../components/CountriesStatesAndCities'
-import { createReport } from '../redux/actions'
+import { createReport, setCurrentStateID, setCurrentCityID } from '../redux/actions'
+import uuid from 'react-uuid'
 
 export class ReportInfection extends Component {
     state = {
@@ -34,16 +35,30 @@ export class ReportInfection extends Component {
         })
     }
 
+    handleChangeState = (event) => {
+        setCurrentStateID(event.target.value, this.props.dispatch)
+        let newState = statesList.find(({id}) => id.toString() === event.target.value)
+        this.setState({state: newState.name})
+    }
+
+    handleChangeCity = (event) => {
+        console.log(event.target.value)
+        setCurrentCityID(event.target.value, this.props.dispatch)
+        let newCity = citiesList.find(({id}) => id.toString() === event.target.value)    
+        this.setState({city: newCity.name})    
+
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.file)
         const file =this.state.file
-        if(this.state.city_town_or_village && this.state.nearest_landmark && this.state.description){
+        if(this.state.city_town_or_village && this.state.city && this.state.state && this.state.nearest_landmark && this.state.description){
             let report = {
                 user_id: this.props.user_id,
-                city: this.props.appUserLocation.city,
+                city: this.state.city,
                 state: this.state.state,
-                country: this.props.appUserLocation.country,
+                country: this.props.currentCountry,
                 lga: this.state.lga,
                 city_town_or_village: this.state.city_town_or_village,
                 nearest_landmark: this.state.nearest_landmark,
@@ -61,28 +76,10 @@ export class ReportInfection extends Component {
             }
             createReport(this.props.dispatch, this.props.push, this.props.user, report)
         }else{
-            alert('Please fill all fields')
+            alert('Please fill/select all fields')
         }
     }
 
-
-    displayNewCountry = (event) => {
-        let newCountry = countriesList.find(({id}) => id.toString() === this.props.currentCountryID)
-        if(this.props.currentCountryID){
-            return newCountry.name
-        }else{
-            return 'No country selected'
-        }
-    }
-
-    displayNewState = (event) => {
-        let newState = statesList.find(({id}) => id.toString() === this.props.currentStateID)        
-        if(this.props.currentStateID){
-            return newState.name
-        }else{
-            return 'No state selected'
-        }
-    }
 
     displayNewCity = (event) => {
         let newCity = citiesList.find(({id}) => id.toString() === this.props.currentCityID)        
@@ -97,11 +94,15 @@ export class ReportInfection extends Component {
         }
     }
 
+    
     render() {
-        console.log(this.props.currentCountry)
-        console.log(this.props)
-        // let states = statesList.filter(state => state.country_id === this.props.currentCountryID)
-        // let cities = citiesList.filter(city => city.state_id === this.props.currentStateID)
+        let states = statesList.filter(state => state.country_id === this.props.currentCountry.id.toString())
+        let cities = citiesList.filter(city => city.state_id === this.props.currentStateID)
+
+
+
+        console.log(states)
+        console.log(cities)
         return (
             <div className='entry-point'>
             <form onSubmit={this.handleSubmit}>
@@ -179,14 +180,30 @@ export class ReportInfection extends Component {
                    <p>{this.props.currentCountry.name}</p>
                </div><br/>
 
-               <div className='row'>
-                   <label>
-                       <strong>State</strong>
-                   </label>
-               </div>
-               <div className='row'>
-                   <input name='state' type='text' value={this.state.state} onChange={this.handleChange} />
-               </div><br/>
+               <div className='row job-card-row'>
+                    <label>
+                        <strong>State/Province: </strong>
+                    </label>
+                    <select onChange={this.handleChangeState} className='location-select'>
+                        <option defaultValue='Select state'>Choose state</option> 
+                        {states.map(state => <option key={uuid()} value={state.id}>{state.name}</option>)}
+                    </select>
+                </div><br/>
+
+
+               <div className='row job-card-row'>
+                    <label>
+                        <strong>City: </strong>
+                    </label>
+                    <select onChange={this.handleChangeCity} className='location-select'>
+                        <option defaultValue='Select city'>change city</option>
+                        {cities.length <= 0 ?
+                            <option key={uuid()} value={'State has no city'}>State has no cities</option>
+                            :
+                            cities.map(city => <option key={uuid()} value={city.id}>{city.name}</option>)
+                        }                        
+                    </select>
+                </div><br/>
 
                <div className='row'>
                    <label>
@@ -199,7 +216,7 @@ export class ReportInfection extends Component {
                
                <div className='row'>
                    <label>
-                       <strong>City, Town, or Village</strong>
+                       <strong>Town, or Village</strong>
                    </label>
                </div>
                <div className='row'>

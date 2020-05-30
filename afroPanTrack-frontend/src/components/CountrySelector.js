@@ -1,7 +1,7 @@
 import React from 'react'
 import { centerOfCountries } from '../components/CenterOfCountries'
-import {countriesList, statesList, citiesList} from '../components/CountriesStatesAndCities'
-import { setCurrentCountryCenter, setCurrentCountry } from '../redux/actions'
+import {countriesList} from '../components/CountriesStatesAndCities'
+import { setCurrentCountryCenter, setCurrentCountry, setCurrentCountryID } from '../redux/actions'
 import {connect} from 'react-redux'
 
 
@@ -30,6 +30,7 @@ const CountrySelector = (props) => {
             setCurrentCountryCenter(selectedCountryCenter, dispatch)
             //will use country from above as it comes with more needed parameters
             setCurrentCountry(dispatch, country)
+            setCurrentCountryID(country.id, dispatch)
         }
     }
 
