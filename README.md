@@ -85,6 +85,7 @@
          <li>Verify reports by other users</li>
         </ul>
         </li>
+      <li>An email authentication process that prevents a new user from logging in or using the app as valid user until they authenticate their email via a confirmation email sent to them during signup</li>
       </ul>
     </p>
     
