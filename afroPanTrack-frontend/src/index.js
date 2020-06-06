@@ -13,12 +13,14 @@ import userReducer from '../src/redux/userReducer'
 import reportReducer from './redux/reportsReducer';
 import viewsReducer from './redux/viewsReducer';
 import locationsReducer from './redux/locationsReducer';
+import quarantineCentersReducer from './redux/quarantineCentersReducer';
 
 const rootReducer = combineReducers({
     allUserInfo: userReducer,
     allReportInfo: reportReducer,
     allViewsInfo: viewsReducer,
-    allLocationInfo: locationsReducer
+    allLocationInfo: locationsReducer,
+    allQuarantineCenterInfo: quarantineCentersReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

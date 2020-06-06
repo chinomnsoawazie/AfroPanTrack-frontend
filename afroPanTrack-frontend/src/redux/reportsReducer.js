@@ -7,7 +7,6 @@ const initialState = {
 const reportReducer = (state = initialState, action) =>{
     switch (action.type) {
         case SET_REPORTS:
-            console.log(action.payload)
         return {
             ...state,
             allReports: action.payload

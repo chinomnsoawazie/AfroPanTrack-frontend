@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {logout, setQuarantineCentersView, setInfectionsMapView, setReportInfectionsView, setGovtUpdatesView, setHelpRequestsView, setBartersView, setSignupView} from '../redux/actions'
+import {logout, setQuarantineCentersView, setInfectionsMapView, setReportInfectionsView, setHelpRequestsView, setBartersView, setSignupView, setQuarantineCenters, setReports} from '../redux/actions'
 
 
 const NavBar = (props) => {
@@ -13,28 +13,11 @@ const NavBar = (props) => {
         if(!loggedIn){
             alert('You need to have an account and logged in in order to report an infection')
         }else{
-        setReportInfectionsView(dispatch)
-        props.history.push('/select-country-only')
+            setReportInfectionsView(dispatch)
+            props.history.push('/select-country-only')
         }
     }
-
-
-    const handleViewInfectionMap = () => {
-        setInfectionsMapView(dispatch)
-        props.history.push('/select-country-only')
-    }
-
-    const handleViewQuarantineCenters = () => {
-        setQuarantineCentersView(dispatch)
-        props.history.push('/select-country-only')
-    }
-
-    const handleViewGovtUpdates = () => {
-        setGovtUpdatesView(dispatch)
-        props.history.push('/select-country-only')
-    }
-
-    const handleViewHelpIssues = () => {
+    const handleRequestOrOfferHelp = () => {
         if(!loggedIn){
             alert('You need to have an account and logged in in order to request or offer help')
         }else{
@@ -43,27 +26,37 @@ const NavBar = (props) => {
         }
     }
 
-    const handleViewBarterIssues = () => {
+    const handleBarterStuff = () => {
         if(!loggedIn){
-            alert('You need to have an account and logged in in order to view or participate in barters')
+            alert('You need to have an account and logged in in order to barter stuff')
         }else{
             setBartersView(dispatch)
             props.history.push('/select-country-only')
         }
     }
 
-    const handleSignUpView = () => {
+    const handleSignUp = () => {
         setSignupView(dispatch)
         props.history.push('/select-country-only')
     }
 
- 
+    const handleViewInfectionMap = () => {
+        setInfectionsMapView(dispatch)
+        setReports(dispatch)
+        props.history.push('/select-country-only')
+    }
+
+    const handleViewQuarantineCenters = () => {
+        setQuarantineCentersView(dispatch)
+        setQuarantineCenters(dispatch)
+        props.history.push('/select-country-only')
+    }
+
 
     return (
         <header className='nav-bar'>
             <nav className='nav-bar-items row' style={{  borderTop: "solid", borderBottom: "solid", borderWidth: "2px", borderColor: "#929ca7", borderRadius: "15px"}}>
 
-             
                 <div className='column'>
                     <button onClick={handleViewInfectionMap} className="nav-buttons">COVID-19 infection map</button>
                     <button onClick={reportInfection} className="nav-buttons">Report an infection</button>
@@ -71,7 +64,7 @@ const NavBar = (props) => {
 
                 <div className='column'>
                     <button onClick={handleViewQuarantineCenters} className="nav-buttons">Quarantine Centers</button>
-                    <button onClick={handleViewGovtUpdates} className="nav-buttons">Government Updates</button>
+                    <button onClick={() => props.history.push('/government-updates')} className="nav-buttons">Government Updates</button>
                 </div>
 
                 <div className='column'>
@@ -80,8 +73,8 @@ const NavBar = (props) => {
                 </div>
                 
                 <div className='column'>
-                    <button onClick={handleViewHelpIssues} className="nav-buttons">Request/Offer help</button>
-                    <button onClick={handleViewBarterIssues} className="nav-buttons">Barter stuff</button>
+                    <button onClick={handleRequestOrOfferHelp} className="nav-buttons">Request/Offer help</button>
+                    <button onClick={handleBarterStuff} className="nav-buttons">Barter stuff</button>
                 </div>
 
 
@@ -99,7 +92,7 @@ const NavBar = (props) => {
                </>
                 :
                 <div className='column'>
-                    <button onClick={handleSignUpView} className="nav-buttons">Sign up</button>
+                    <button onClick={handleSignUp} className="nav-buttons">Sign up</button>
                     <button onClick={() => props.history.push('/login')} className="nav-buttons">Login</button>
                 </div>
             }

@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY} from '../redux/actionTypes'
+import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY, SET_CENTRES} from '../redux/actionTypes'
 import axios from 'axios'
 import Geocode from 'react-geocode'
 
@@ -19,7 +19,6 @@ export const setAPIKeys = (dispatch) =>{
 export const setReports = (dispatch) => {
   axios.get("http://localhost:3000/reports")
   .then(allReports => {
-    console.log(allReports)
     console.log(allReports.data)
     dispatch({type: SET_REPORTS, payload: allReports.data})
   })
@@ -196,4 +195,22 @@ export const setAppUserLocation = (dispatch, Google_mapsAPIKey) => {
       .catch((error) => {
         console.error('Error:', error);
       })
+}
+
+//QUARANTINE CENTRES ISSUES
+export const setQuarantineCenters = (dispatch) => {
+  axios.get("http://localhost:3000/quarantine_centre")
+  .then(allCentres => {
+    console.log(allCentres.data)
+    dispatch({type: SET_CENTRES, payload: allCentres.data})
+  })
+}
+
+//QUARANTINE CENTRES ISSUES
+export const setBarters = (dispatch) => {
+  axios.get("http://localhost:3000/quarantine_centre")
+  .then(allCentres => {
+    console.log(allCentres.data)
+    dispatch({type: SET_REPORTS, payload: allCentres.data})
+  })
 }

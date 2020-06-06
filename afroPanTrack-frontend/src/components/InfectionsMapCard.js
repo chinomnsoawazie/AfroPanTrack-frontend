@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, InfoWindow, Marker} from 'google-maps-react';
 import { withRouter } from 'react-router-dom'
-import ReactDOM from 'react-dom'
 import corona_icon from '../pictures/corona_icon.png'
 
 export class InfectionsMapCard extends Component {
@@ -27,18 +26,10 @@ export class InfectionsMapCard extends Component {
             })
         }
     }
-// Use below to view report of an infection from map
-    // navigateToStation = () => {
-    //     const button = (<button id='navigate-to-location' onClick={e =>
-    //    {this.props.history.push('/navigation-card')}}> Navigate to location </button>);
-    //    ReactDOM.render(React.Children.only(button), document.getElementById("navi-div"));
-    // }
-   
-
 
     render() {
        const  mapStyles = {width: '100%', height: '90%'}
-       console.log(this.props.allReports.AllReports)
+       console.log(this.props)
        
         return (
             <div>
@@ -50,7 +41,6 @@ export class InfectionsMapCard extends Component {
                         lat: this.props.currentCountryCenter.lat,
                         lng: this.props.currentCountryCenter.lng
                     }}
-                    // onReady={this.backToSearchResults}
                     onClick={this.onMapClicked}
                         >
 
@@ -74,7 +64,6 @@ export class InfectionsMapCard extends Component {
                     <InfoWindow 
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
-                    // onOpen={this.navigateToStation}
                     >
                         <>
                         <div className='row'>

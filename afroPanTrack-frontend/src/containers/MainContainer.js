@@ -11,7 +11,7 @@ import AdminPage from './AdminPage'
 import ReportInfection from '../forms/ReportInfection'
 import ModeratorPanel from './ModeratorPanel'
 import UserPanel from './UserPanel'
-import { QuarantineCenters } from '../components/QuarantineCenters'
+import QuarantineCenters from '../components/QuarantineCenters'
 import Barter from '../components/Barter'
 import CovidFacts from '../components/CovidFacts'
 import GlobalCovidUpdates from '../components/GlobalCovidUpdates'
@@ -21,22 +21,24 @@ import GovtUpdates from '../components/GovtUpdates'
 
 
 const MainContainer = (props) => {
-    const {loggedIn, google_maps_api_key, allReports, dispatch, currentCityID, currentStateID,
+    const {google_maps_api_key, allReports, dispatch, currentCityID, currentStateID, allCentres,
             currentCountryCenter, appUserLocation, user_id, appUserCoordinates, user, currentCountry} = props
+
+
     return (
         <>
         <Switch>
 
         {/*USER ISSUES */}
             <Route exact path='/login' render = { () => <Login push={props.history.push} dispatch={dispatch} google_maps_api_key={google_maps_api_key}/>} />
-            <Route exact path='/signup' render = { () => <SignUp push={props.history.push} dispatch={dispatch}/>} />
+            <Route exact path='/signup' render = { () => <SignUp push={props.history.push} dispatch={dispatch} currentCountry={currentCountry} currentStateID={currentStateID} currentCityID={currentCityID}/>} />
             <Route exact path='/admin-panel' render = { () => <AdminPage />} />
             <Route exact path='/moderator-panel' render = { () => <ModeratorPanel />} />
             <Route exact path='/user-panel' render = { () => <UserPanel />} />
 
             {/*MAP ISSUES */}
             <Route exact path='/infections-map' render = { () => <InfectionsMapCard allReports={allReports} currentCountryCenter={currentCountryCenter} apiKey={google_maps_api_key}/>} />
-            <Route exact path='/quarantine-map' render = { () => <QuarantineCenters allReports={allReports} currentCountryCenter={currentCountryCenter} apiKey={google_maps_api_key}/>} />
+            <Route exact path='/quarantine-map' render = { () => <QuarantineCenters allCentres={allCentres} currentCountryCenter={currentCountryCenter} apiKey={google_maps_api_key}/>} />
 
             {/*ENABLING COMPONENTS*/}
             <Route exact path='/select-country-only' render = { () => <CountrySelector push={props.history.push} dispatch={props.dispatch}/> } />
@@ -60,6 +62,7 @@ const MainContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        /*USER ISSUES*/
         loggedIn: state.allUserInfo.loggedIn,
         user: state.allUserInfo.user,
         first_name: state.allUserInfo.first_name,
@@ -68,20 +71,29 @@ const mapStateToProps = (state) => {
         admin: state.allUserInfo.admin,
         appEmail: state.allUserInfo.appEmail,
         moderator: state.allUserInfo.moderator,
-        google_maps_api_key: state.allUserInfo.google_maps_api_key,
-        token: state.allUserInfo.token,
+        allowed_to_report: state.allUserInfo.allowed_to_report,
         email_confirmed: state.allUserInfo.email_confirmed,
         allowed_to_request: state.allUserInfo.allowed_to_request,
-        allowed_to_report: state.allUserInfo.allowed_to_report,
-        allReports: state.allReportInfo.allReports,
+
+        /*APP-WIDE ISSUES*/
+        google_maps_api_key: state.allUserInfo.google_maps_api_key,
+        token: state.allUserInfo.token,
+
+        /*LOCATION ISSUES*/
         appUserLocation: state.allLocationInfo.appUserLocation,
-        appUserCoordinates: state.allReportInfo.appUserCoordinates,
+        appUserCoordinates: state.allLocationInfo.appUserCoordinates,
         currentCountry: state.allLocationInfo.SelectedCountry,
         currentCountryCenter: state.allLocationInfo.currentCountryCenter,
         loggedInUserCountry: state.allLocationInfo.loggedInUserCountry,
+        currentStateID: state.allLocationInfo.currentStateID,
         currentCountryID: state.allLocationInfo.currentCountryID,
         currentCityID: state.allLocationInfo.currentCityID,
-        currentStateID: state.allLocationInfo.currentStateID
+
+        /*REPORTS ISSUES*/
+        allReports: state.allReportInfo.allReports,
+
+        /*QUARANTINE CENTRE ISSUES*/
+        allCentres: state.allQuarantineCenterInfo.allCentres,
     }
 }
 

@@ -10,9 +10,9 @@ const CountrySelector = (props) => {
     const {push, dispatch, viewBarters, viewGovtUpdates, viewHelpRequests, viewInfectionMap, viewQuarantineMap, signUp, reportAnInfection} = props
 
     const handleChangeCountry = (event) => {
-        console.log(event.target.value)
-        let country = countriesList.find(({id}) => id.toString() === event.target.value)
-        console.log(country)
+        // console.log(event.target.value)
+        // let country = countriesList.find(({id}) => id.toString() === event.target.value)
+        // console.log(country)
         if(event.target.value === 'Select country'){
             alert('Please chose a valid country')
         }else if(event.target.value === '999999'){

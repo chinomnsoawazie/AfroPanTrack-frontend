@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {countriesList, statesList, citiesList} from '../components/CountriesStatesAndCities'
+import {statesList, citiesList} from '../components/CountriesStatesAndCities'
 import { createReport, setCurrentStateID, setCurrentCityID } from '../redux/actions'
 import uuid from 'react-uuid'
 
@@ -36,17 +36,17 @@ export class ReportInfection extends Component {
     }
 
     handleChangeState = (event) => {
+        event.preventDefault()
         setCurrentStateID(event.target.value, this.props.dispatch)
         let newState = statesList.find(({id}) => id.toString() === event.target.value)
         this.setState({state: newState.name})
     }
 
     handleChangeCity = (event) => {
-        console.log(event.target.value)
+        event.preventDefault()
         setCurrentCityID(event.target.value, this.props.dispatch)
         let newCity = citiesList.find(({id}) => id.toString() === event.target.value)    
         this.setState({city: newCity.name})    
-
     }
 
     handleSubmit = (event) => {
@@ -80,29 +80,10 @@ export class ReportInfection extends Component {
         }
     }
 
-
-    displayNewCity = (event) => {
-        let newCity = citiesList.find(({id}) => id.toString() === this.props.currentCityID)        
-        if(this.props.currentCityID){
-            if(newCity){
-                return newCity.name
-            }else{
-                return 'State has no city'
-            }
-        }else{
-            return 'No city selected'
-        }
-    }
-
     
     render() {
-        let states = statesList.filter(state => state.country_id === this.props.currentCountry.id.toString())
-        let cities = citiesList.filter(city => city.state_id === this.props.currentStateID)
-
-
-
-        console.log(states)
-        console.log(cities)
+        // let states = statesList.filter(state => state.country_id === this.props.currentCountry.id.toString())
+        // let cities = citiesList.filter(city => city.state_id === this.props.currentStateID)
         return (
             <div className='entry-point'>
             <form onSubmit={this.handleSubmit}>
@@ -183,10 +164,10 @@ export class ReportInfection extends Component {
                <div className='row job-card-row'>
                     <label>
                         <strong>State/Province: </strong>
-                    </label>
-                    <select onChange={this.handleChangeState} className='location-select'>
-                        <option defaultValue='Select state'>Choose state</option> 
-                        {states.map(state => <option key={uuid()} value={state.id}>{state.name}</option>)}
+                    </label>{this.state.state}
+                    <select value={this.state.state} onChange={this.handleChangeState} className='location-select'>
+                        <option value='Select state'>Choose/Change state</option> 
+                        {statesList.filter(state => state.country_id === this.props.currentCountry.id.toString()).map(state => <option key={uuid()} value={state.id}>{state.name}</option>)}
                     </select>
                 </div><br/>
 
@@ -194,13 +175,13 @@ export class ReportInfection extends Component {
                <div className='row job-card-row'>
                     <label>
                         <strong>City: </strong>
-                    </label>
+                    </label>{this.state.city}
                     <select onChange={this.handleChangeCity} className='location-select'>
-                        <option defaultValue='Select city'>change city</option>
-                        {cities.length <= 0 ?
+                        <option defaultValue='Select city'>Chose/Change city</option>
+                        {citiesList.filter(city => city.state_id === this.props.currentStateID).length <= 0 ?
                             <option key={uuid()} value={'State has no city'}>State has no cities</option>
                             :
-                            cities.map(city => <option key={uuid()} value={city.id}>{city.name}</option>)
+                            citiesList.filter(city => city.state_id === this.props.currentStateID).map(city => <option key={uuid()} value={city.id}>{city.name}</option>)
                         }                        
                     </select>
                 </div><br/>
