@@ -2,10 +2,10 @@ import React from 'react'
 import UpdateCard from '../cards/UpdateCard'
 
 
-export const GovtUpdates = (props) => {
-    const {loggedIn, first_name, allGovtUpdates, currentCountry} = props
+export const CountryUpdates = (props) => {
+    const {loggedIn, first_name, allCountryUpdates, currentCountry} = props
 
-    const countryUpdates = allGovtUpdates.AllUpdates.filter(update => update.country === currentCountry.name)
+    const countryUpdates = allCountryUpdates.AllUpdates.filter(update => update.country === currentCountry.name)
 
     return (
         <>
@@ -30,4 +30,4 @@ export const GovtUpdates = (props) => {
 }
 
 
-export default GovtUpdates
+export default CountryUpdates

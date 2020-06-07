@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 
 
 const CountrySelector = (props) => {
-    const {push, dispatch, viewBarters, viewGovtUpdates, viewHelpRequests, viewInfectionMap, viewQuarantineMap, signUp, reportAnInfection} = props
+    const {push, dispatch, viewBarters, viewCountryUpdates, viewHelpRequests, viewInfectionMap, viewQuarantineMap, signUp, reportAnInfection} = props
 
     const handleChangeCountry = (event) => {
         // console.log(event.target.value)
@@ -40,8 +40,8 @@ const CountrySelector = (props) => {
             alert('You have to select a country')
         }else if (event.target.elements[1].value === 'barters'){
             push('/barter')
-        }else if(event.target.elements[1].value === 'govtUpdates'){
-            push('/govt-updates')
+        }else if(event.target.elements[1].value === 'countryUpdates'){
+            push('/country-updates')
         }else if(event.target.elements[1].value === 'offerHelp'){
             push('/offer-help')
         }else if(event.target.elements[1].value === 'requestHelp'){
@@ -62,9 +62,9 @@ const CountrySelector = (props) => {
             return <>
                     <button className='page-buttons' type='submit' value='barters'>View Barters</button>
                 </>
-        }else if(viewGovtUpdates){
+        }else if(viewCountryUpdates){
             return <>
-                    <button className='page-buttons' type='submit' value='govtUpdates'>View Updates</button>
+                    <button className='page-buttons' type='submit' value='countryUpdates'>View Updates</button>
                 </>
         }else if(viewHelpRequests) {
             return (<div>
@@ -125,7 +125,7 @@ const mapStateToProps = (state) => {
     return {
         viewInfectionMap: state.allViewsInfo.viewInfectionMap,
         viewQuarantineMap: state.allViewsInfo.viewQuarantineMap,
-        viewGovtUpdates: state.allViewsInfo.viewGovtUpdates,
+        viewCountryUpdates: state.allViewsInfo.viewCountryUpdates,
         viewHelpRequests: state.allViewsInfo.viewHelpRequests,
         viewBarters: state.allViewsInfo.viewBarters,
         reportAnInfection: state.allViewsInfo.reportAnInfection,

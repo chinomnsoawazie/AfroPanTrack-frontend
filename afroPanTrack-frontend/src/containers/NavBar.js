@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {logout, setQuarantineCentersView, setInfectionsMapView, setReportInfectionsView, setHelpRequestsView, setBartersView, setSignupView, setQuarantineCenters, setReports, setGovtUpdatesView, setGovtUpdates} from '../redux/actions'
+import {logout, setQuarantineCentersView, setInfectionsMapView, setReportInfectionsView, setHelpRequestsView, setBartersView, setSignupView, setQuarantineCenters, setReports, setCountryUpdatesView, setCountryUpdates} from '../redux/actions'
 
 
 const NavBar = (props) => {
@@ -52,9 +52,9 @@ const NavBar = (props) => {
         props.history.push('/select-country-only')
     }
 
-    const handleGovtUpdatesView = () => {
-        setGovtUpdates(dispatch)
-        setGovtUpdatesView(dispatch)
+    const handleCountryUpdatesView = () => {
+        setCountryUpdates(dispatch)
+        setCountryUpdatesView(dispatch)
         props.history.push('/select-country-only')
     }
 
@@ -70,7 +70,7 @@ const NavBar = (props) => {
 
                 <div className='column'>
                     <button onClick={handleViewQuarantineCenters} className="nav-buttons">Quarantine Centers</button>
-                    <button onClick={handleGovtUpdatesView} className="nav-buttons">Country Updates</button>
+                    <button onClick={handleCountryUpdatesView} className="nav-buttons">Country Updates</button>
                 </div>
 
                 <div className='column'>

@@ -14,7 +14,8 @@ import reportReducer from './redux/reportsReducer';
 import viewsReducer from './redux/viewsReducer';
 import locationsReducer from './redux/locationsReducer';
 import quarantineCentersReducer from './redux/quarantineCentersReducer';
-import govtUpdateReducer from './redux/govtUpdatesReducer';
+import countryUpdatesReducer from './redux/countryUpdatesReducer';
+import factsReducer from './redux/factsReducer';
 
 const rootReducer = combineReducers({
     allUserInfo: userReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     allViewsInfo: viewsReducer,
     allLocationInfo: locationsReducer,
     allQuarantineCenterInfo: quarantineCentersReducer,
-    allGovtUpdateInfo: govtUpdateReducer
+    allCountryUpdateInfo: countryUpdatesReducer,
+    allFactInfo: factsReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -31,13 +31,12 @@ export class QuarantineCenters extends Component {
     
         render() {
            const  mapStyles = {width: '100%', height: '90%'}
-        //    console.log(this.props.allCentres.AllQuarantineCentres)
            console.log(this.props)
             return (
                 <div>
                     <Map
                         google={this.props.google}
-                        zoom={7}
+                        zoom={6.4}
                         style={mapStyles}
                         initialCenter={{ 
                             lat: this.props.currentCountryCenter.lat,

@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY, SET_CENTRES, SET_GOVT_UPDATES} from '../redux/actionTypes'
+import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY, SET_CENTRES, SET_FACTS, SET_COUNTRY_UPDATES} from '../redux/actionTypes'
 import axios from 'axios'
 import Geocode from 'react-geocode'
 
@@ -13,7 +13,6 @@ export const setAPIKeys = (dispatch) =>{
     console.log('Error:', error)
   })
 }
-
 
 //REPORT ISSUES
 export const setReports = (dispatch) => {
@@ -47,24 +46,21 @@ export const createReport = (dispatch, push, user, report) => {
   })
 }
 
-
 //UPDATE ISSUES
-export const setGovtUpdates = (dispatch) => {
+export const setCountryUpdates = (dispatch) => {
   console.log(dispatch)
   axios.get("http://localhost:3000/update")
   .then(allUpdates => {
     console.log(allUpdates)
     console.log(allUpdates.data)
-    dispatch({type: SET_GOVT_UPDATES, payload: allUpdates.data})
+    dispatch({type: SET_COUNTRY_UPDATES, payload: allUpdates.data})
   })
   .catch((error) =>{
     console.log('Error:', error)
   })
 }
 
-
 //VIEWS ISSUES
-
 export const resetViews = (dispatch) => {
   dispatch({type: RESET_VIEWS})
 }
@@ -78,7 +74,7 @@ export const setQuarantineCentersView = (dispatch) => {
   dispatch({type: SET_QUARANTINE_VIEW})
 }
 
-export const setGovtUpdatesView = (dispatch) => {
+export const setCountryUpdatesView = (dispatch) => {
   dispatch({type: SET_UPDATES_VIEW})
 }
 
@@ -97,7 +93,6 @@ export const setReportInfectionsView = (dispatch) => {
 export const setSignupView = (dispatch) => {
   dispatch({type: SET_SIGNUP_VIEW})
 }
-
 
 //USER ISSUES
 export const login = (user, push, dispatch) =>{
@@ -131,7 +126,6 @@ export const logout = (dispatch, push) => {
   push('/')
 }
 
-
 export const createUser = (user, props) => {
   console.log(user)
   axios.post("http://localhost:3000/users", user)
@@ -145,9 +139,7 @@ export const createUser = (user, props) => {
   })
 }
 
-
 //LOCATION ISSUES
-
 export const resetLocationParams = (dispatch) => {
   dispatch({type: RESET_LOCATION_PARAMS})
 }
@@ -224,6 +216,18 @@ export const setBarters = (dispatch) => {
   .then(allCentres => {
     console.log(allCentres.data)
     dispatch({type: SET_REPORTS, payload: allCentres.data})
+  })
+  .catch((error) =>{
+    console.log('Error:', error)
+  })
+}
+
+//FACTS ISSUES
+export const setFacts = (dispatch) => {
+  axios.get("http://localhost:3000/facts")
+  .then(allFacts => {
+    console.log(allFacts.data)
+    dispatch({type: SET_FACTS, payload: allFacts.data})
   })
   .catch((error) =>{
     console.log('Error:', error)
