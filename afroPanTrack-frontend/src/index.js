@@ -14,21 +14,19 @@ import reportReducer from './redux/reportsReducer';
 import viewsReducer from './redux/viewsReducer';
 import locationsReducer from './redux/locationsReducer';
 import quarantineCentersReducer from './redux/quarantineCentersReducer';
+import govtUpdateReducer from './redux/govtUpdatesReducer';
 
 const rootReducer = combineReducers({
     allUserInfo: userReducer,
     allReportInfo: reportReducer,
     allViewsInfo: viewsReducer,
     allLocationInfo: locationsReducer,
-    allQuarantineCenterInfo: quarantineCentersReducer
+    allQuarantineCenterInfo: quarantineCentersReducer,
+    allGovtUpdateInfo: govtUpdateReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 let storeObj = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
-
-
-
-
 
 ReactDOM.render(
     <Router>

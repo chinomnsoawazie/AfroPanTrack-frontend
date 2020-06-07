@@ -56,3 +56,17 @@ height: 3vh;
   min-width: 30vw;
   min-height: 10vh;
 } */
+
+.update-card {
+  margin: 3px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  color: off-white;
+  width: 29vw;
+  text-align: left;
+  border-radius: 20px;
+  padding: 1vw;
+  transition: 0.8s;
+}

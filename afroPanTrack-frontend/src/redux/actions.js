@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY, SET_CENTRES} from '../redux/actionTypes'
+import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY, SET_CENTRES, SET_GOVT_UPDATES} from '../redux/actionTypes'
 import axios from 'axios'
 import Geocode from 'react-geocode'
 
@@ -22,6 +22,9 @@ export const setReports = (dispatch) => {
     console.log(allReports.data)
     dispatch({type: SET_REPORTS, payload: allReports.data})
   })
+  .catch((error) =>{
+    console.log('Error:', error)
+  })
 }
 
 export const createReport = (dispatch, push, user, report) => {
@@ -39,16 +42,23 @@ export const createReport = (dispatch, push, user, report) => {
       push('/user-panel')
     }
   })
+  .catch((error) =>{
+    console.log('Error:', error)
+  })
 }
 
 
 //UPDATE ISSUES
-export const setUpdates = (dispatch) => {
-  axios.get("http://localhost:3000/updates")
+export const setGovtUpdates = (dispatch) => {
+  console.log(dispatch)
+  axios.get("http://localhost:3000/update")
   .then(allUpdates => {
     console.log(allUpdates)
     console.log(allUpdates.data)
-    // dispatch({type: SET_REPORTS, payload: allUpdates.data})
+    dispatch({type: SET_GOVT_UPDATES, payload: allUpdates.data})
+  })
+  .catch((error) =>{
+    console.log('Error:', error)
   })
 }
 
@@ -110,6 +120,9 @@ export const login = (user, push, dispatch) =>{
         .catch((error) =>{
             console.log('Error:', error)
             alert('Incorrect username and/or password. Try again with correct credentials. Sign up if you do not have an account')
+        })
+        .catch((error) =>{
+          console.log('Error:', error)
         })
 }
 
@@ -201,7 +214,6 @@ export const setAppUserLocation = (dispatch, Google_mapsAPIKey) => {
 export const setQuarantineCenters = (dispatch) => {
   axios.get("http://localhost:3000/quarantine_centre")
   .then(allCentres => {
-    console.log(allCentres.data)
     dispatch({type: SET_CENTRES, payload: allCentres.data})
   })
 }
@@ -212,5 +224,8 @@ export const setBarters = (dispatch) => {
   .then(allCentres => {
     console.log(allCentres.data)
     dispatch({type: SET_REPORTS, payload: allCentres.data})
+  })
+  .catch((error) =>{
+    console.log('Error:', error)
   })
 }

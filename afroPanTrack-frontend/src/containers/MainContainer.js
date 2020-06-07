@@ -22,8 +22,8 @@ import GovtUpdates from '../components/GovtUpdates'
 
 const MainContainer = (props) => {
     const {google_maps_api_key, allReports, dispatch, currentCityID, currentStateID, allCentres,
-            currentCountryCenter, appUserLocation, user_id, appUserCoordinates, user, currentCountry} = props
-
+            currentCountryCenter, appUserLocation, user_id, appUserCoordinates, user, currentCountry,
+            allGovtUpdates, loggedIn, first_name} = props
 
     return (
         <>
@@ -52,7 +52,7 @@ const MainContainer = (props) => {
             <Route exact path='/global-covid-updates' render = { () => <GlobalCovidUpdates />} />
             <Route exact path='/offer-help' render = { () => <OfferHelp />} />
             <Route exact path='/request-help' render = { () => <RequestHelp /> } />
-            <Route exact path='/govt-updates' render = { () => <GovtUpdates />} />
+            <Route exact path='/govt-updates' render = { () => <GovtUpdates allGovtUpdates={allGovtUpdates} loggedIn={loggedIn} first_name={first_name} currentCountry={currentCountry}/>} />
 
 
         </Switch>
@@ -94,6 +94,9 @@ const mapStateToProps = (state) => {
 
         /*QUARANTINE CENTRE ISSUES*/
         allCentres: state.allQuarantineCenterInfo.allCentres,
+
+        /*GOVT UPDATE ISSUES*/
+        allGovtUpdates: state.allGovtUpdateInfo.allGovtUpdates,
     }
 }
 
