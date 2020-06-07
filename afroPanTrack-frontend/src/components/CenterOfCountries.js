@@ -4,7 +4,7 @@ export const centerOfCountries = [
         "sortname": "NG",
         "name": "Nigeria",
         "phoneCode": 234,
-        "lat": 8.474712,
+        "lat": 8.970301,
         "lng": 6.942211
     },
 

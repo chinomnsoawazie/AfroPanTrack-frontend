@@ -70,3 +70,18 @@ height: 3vh;
   padding: 1vw;
   transition: 0.8s;
 }
+
+.updates-view {
+  display: grid;
+  grid-template-columns: 38vw 38vw;
+  grid-gap: 1vw;
+  grid-column-gap: 1vw;
+  grid-row-gap: 1vh;
+  grid-auto-flow: row;
+  width: 100vw;
+  text-align: center;
+  padding-top: 5vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
+
+}

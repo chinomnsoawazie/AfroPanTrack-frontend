@@ -70,11 +70,11 @@ const NavBar = (props) => {
 
                 <div className='column'>
                     <button onClick={handleViewQuarantineCenters} className="nav-buttons">Quarantine Centers</button>
-                    <button onClick={handleGovtUpdatesView} className="nav-buttons">Government Updates</button>
+                    <button onClick={handleGovtUpdatesView} className="nav-buttons">Country Updates</button>
                 </div>
 
                 <div className='column'>
-                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">COVID-19 facts</button>
+                    <button onClick={() => props.history.push('/covid-facts')} className="nav-buttons">COVID-19 facts</button>
                     <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Global COVID-19 updates</button>
                 </div>
                 

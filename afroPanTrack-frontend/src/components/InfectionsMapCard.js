@@ -35,7 +35,7 @@ export class InfectionsMapCard extends Component {
             <div>
                 <Map
                     google={this.props.google}
-                    zoom={7}
+                    zoom={6.4}
                     style={mapStyles}
                     initialCenter={{ 
                         lat: this.props.currentCountryCenter.lat,
@@ -43,6 +43,10 @@ export class InfectionsMapCard extends Component {
                     }}
                     onClick={this.onMapClicked}
                         >
+
+                            {/**AllReports need to be filtered to just chose those that 
+                             * correspond to with the current country
+                             */}
 
                     {this.props.allReports.AllReports.map(report =><Marker 
                             key={report.id}

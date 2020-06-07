@@ -51,8 +51,15 @@ export class ReportInfection extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.state.file)
         const file =this.state.file
+
+        //dummyLocations and chosenLocation below are for dev purposes only
+        const dummyLocations = [{lat: 6.44183, lng: 3.36899},
+                                {lat: 9.08603, lng: 7.48114},
+                                {lat: 6.44383, lng: 3.36869},
+                                {lat: 9.08203, lng: 7.48214}]
+        const chosenLocation = dummyLocations[Math.floor(Math.random()*dummyLocations.length)]
+
         if(this.state.city_town_or_village && this.state.city && this.state.state && this.state.nearest_landmark && this.state.description){
             let report = {
                 user_id: this.props.user_id,
@@ -64,8 +71,14 @@ export class ReportInfection extends Component {
                 nearest_landmark: this.state.nearest_landmark,
                 persons_involved: this.state.persons_involved,
                 description: this.state.description,
-                lat: this.props.appUserCoordinates.lat,
-                lng: this.props.appUserCoordinates.lng,
+                //Dummy lat and lng used for development purposes. to be replaced
+                //by that pulled from the device on live app
+                lat: chosenLocation.lat,
+                lng: chosenLocation.lng,
+                //comment back location coordinates below and comment out the one 
+                //above for live app
+                // lat: this.props.appUserCoordinates.lat,
+                // lng: this.props.appUserCoordinates.lng,
                 medical_attention_observed: this.state.medical_attention_observed,
                 medical_attention_description: this.state.medical_attention_description,
                 can_we_follow_up: this.state.can_we_follow_up,
@@ -82,8 +95,6 @@ export class ReportInfection extends Component {
 
     
     render() {
-        // let states = statesList.filter(state => state.country_id === this.props.currentCountry.id.toString())
-        // let cities = citiesList.filter(city => city.state_id === this.props.currentStateID)
         return (
             <div className='entry-point'>
             <form onSubmit={this.handleSubmit}>
