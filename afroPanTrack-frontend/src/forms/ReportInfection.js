@@ -65,7 +65,7 @@ export class ReportInfection extends Component {
                 user_id: this.props.user_id,
                 city: this.state.city,
                 state: this.state.state,
-                country: this.props.currentCountry,
+                country: this.props.currentCountry.name,
                 lga: this.state.lga,
                 city_town_or_village: this.state.city_town_or_village,
                 nearest_landmark: this.state.nearest_landmark,

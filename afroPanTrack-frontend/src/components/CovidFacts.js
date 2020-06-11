@@ -1,12 +1,48 @@
 import React from 'react'
+import FactCard from '../cards/FactCard'
 
 const CovidFacts = (props) => {
-    const {allFacts} = props
-    console.log(allFacts.AllFacts)
+
+    const {loggedIn, first_name, allFacts} = props
+    console.log(props)
+    console.log(allFacts)
+    console.log(allFacts.AllFacts[0])
+
+    const symptoms = allFacts.AllFacts.filter(fact => fact.category === 'symptoms')
+
+
+    const transmissionFacts = allFacts.AllFacts.filter(fact => fact.category === 'transmission')
+
+    const mythsOrRumors = allFacts.AllFacts.filter(fact => fact.category === 'mythOrRumor')
+    console.log(symptoms, transmissionFacts, mythsOrRumors)
+
     return (
+        <>
         <div>
-            <h1>CovidFacts live here</h1>
+            {loggedIn ? 
+            <p>Hello <strong>{first_name}</strong>, you are viewing COVID-19 facts. These includes symptoms, transmission facts, and myths/rumors </p>
+            :
+            <p>You you are viewing COVID-19 facts. These includes symptoms, transmission facts, and myths.rumors</p>
+        }
+
         </div>
+        <div className='row facts-view'>
+            <div className='column'>
+                <h3>Symptoms</h3>
+            {symptoms.map(fact => <FactCard key={fact.id} fact={fact}/>)}
+            </div>
+            <div className='column'>
+                <h3>Transmission facts</h3>
+                {transmissionFacts.map(fact => <FactCard key={fact.id} fact={fact}/>)}
+
+            </div>
+            <div className='column'>
+                <h3>Myths/Rumors</h3>
+                {mythsOrRumors.map(fact => <FactCard key={fact.id} fact={fact}/>)}
+
+            </div>
+        </div>
+        </>
     )
 }
 

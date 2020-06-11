@@ -1,14 +1,12 @@
-
-
 .logo {
 width: 3vw;
 height: 3vh;
 }
+
 .entry-point {
   padding-left: 4vw;
   padding-top: 2vh;
 }
-
 
 .panels {
   display: grid;
@@ -52,12 +50,21 @@ height: 3vh;
   padding-left: 10vw;
 }
 
-/* .note{
-  min-width: 30vw;
-  min-height: 10vh;
-} */
-
 .update-card {
+  margin: 3px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  color: off-white;
+  width: 29vw;
+  text-align: left;
+  border-radius: 20px;
+  padding: 1vw;
+  transition: 0.8s;
+}
+
+.fact-card {
   margin: 3px;
   flex-direction: column;
   justify-content: center;
@@ -83,5 +90,36 @@ height: 3vh;
   padding-top: 5vh;
   padding-left: 1vw;
   padding-right: 1vw;
+}
 
+.facts-view {
+  display: grid;
+  grid-template-columns: 30vw 30vw 40vw;
+  grid-gap: 1vw;
+  grid-column-gap: 2vw;
+  grid-row-gap: 1vh;
+  grid-auto-flow: row;
+  width: 100vw;
+  text-align: center;
+  padding-top: 5vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+.link-button {
+  background-color: #f9f5d3;
+  align-items: center;
+  justify-content: center;
+  color: rgb(45, 9, 224);
+  font-size: small;
+}
+
+.offer-help {
+    background-color: #2465b9;
+    color: off-white;
+    vertical-align: middle;
+    /* margin-bottom: 0.7vh; */
+    margin-left: 1.2vw;
+    border-radius: 18px;
+    font-size: small;
 }

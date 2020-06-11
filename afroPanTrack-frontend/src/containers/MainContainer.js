@@ -21,7 +21,7 @@ import CountryUpdates from '../components/CountryUpdates'
 
 
 const MainContainer = (props) => {
-    const {google_maps_api_key, allReports, allCountryUpdates, allCentres, allFacts,
+    const {google_maps_api_key, allReports, allCountryUpdates, allCentres, allFacts, allHelps, allHelpers,
             dispatch, currentCityID, currentStateID, appUserCoordinates, currentCountry, currentCountryCenter,
              appUserLocation, user_id,  user, loggedIn, first_name
           } = props
@@ -35,7 +35,7 @@ const MainContainer = (props) => {
             <Route exact path='/signup' render = { () => <SignUp push={props.history.push} dispatch={dispatch} currentCountry={currentCountry} currentStateID={currentStateID} currentCityID={currentCityID}/>} />
             <Route exact path='/admin-panel' render = { () => <AdminPage />} />
             <Route exact path='/moderator-panel' render = { () => <ModeratorPanel />} />
-            <Route exact path='/user-panel' render = { () => <UserPanel />} />
+            <Route exact path='/user-panel' render = { () => <UserPanel user={user} allHelps={allHelps}/>} />
 
             {/*MAP ISSUES */}
             <Route exact path='/infections-map' render = { () => <InfectionsMapCard allReports={allReports} currentCountryCenter={currentCountryCenter} apiKey={google_maps_api_key}/>} />
@@ -49,9 +49,9 @@ const MainContainer = (props) => {
             <Route exact path='/' render = { () => <HomePage />} />
             <Route exact path='/report-infection' render = { () => <ReportInfection appUserLocation={appUserLocation} user_id={user_id} appUserCoordinates={appUserCoordinates} dispatch={dispatch} push={props.history.push} user={user} currentCountry={currentCountry} currentStateID={currentStateID} currentCityID={currentCityID}/>} />
             <Route exact path='/barter' render = { () => <Barter /> } />
-            <Route exact path='/covid-facts' render = { () => <CovidFacts allFacts={allFacts} />} />
+            <Route exact path='/covid-facts' render = { () => <CovidFacts allFacts={allFacts} loggedIn={loggedIn} first_name={first_name}/>} />
             <Route exact path='/global-covid-updates' render = { () => <GlobalCovidUpdates />} />
-            <Route exact path='/offer-help' render = { () => <OfferHelp />} />
+            <Route exact path='/offer-help' render = { () => <OfferHelp allHelps={allHelps} allHelpers={allHelpers} user={user} currentCountry={currentCountry}/>} />
             <Route exact path='/request-help' render = { () => <RequestHelp /> } />
             <Route exact path='/country-updates' render = { () => <CountryUpdates allCountryUpdates={allCountryUpdates} loggedIn={loggedIn} first_name={first_name} currentCountry={currentCountry}/>} />
 
@@ -98,8 +98,15 @@ const mapStateToProps = (state) => {
 
         /*COUNTRY UPDATE ISSUES*/
         allCountryUpdates: state.allCountryUpdateInfo.allCountryUpdates,
+
         /*FACTS ISSUES */
-        allFacts: state.allFactInfo.allFacts
+        allFacts: state.allFactInfo.allFacts,
+
+        /**HELP ISSUES */
+        allHelps: state.allHelpInfo.allHelps,
+        allHelpers: state.allHelpInfo.allHelpers,
+
+
     }
 }
 

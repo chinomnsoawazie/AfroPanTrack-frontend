@@ -51,11 +51,8 @@ export class SignUp extends Component {
         this.setState({city: newCity.name})    
     }
 
-
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.state.first_name, this.state.last_name, this.state.username, this.state.email, 
-            this.state.password, this.state.country, this.state.state, this.state.city, this.state.phone_no)
         if(this.state.password === this.state.confirm_password){
             if(this.state.first_name && this.state.last_name && this.state.username && this.state.email 
                 && this.state.password && this.state.state && this.state.city
@@ -70,12 +67,11 @@ export class SignUp extends Component {
                     "facebook_name": this.state.facebook_name,
                     "twitter_handle": this.state.twitter_handle,
                     "email": this.state.email,
-                    "country": this.props.currentCountry,
+                    "country": this.props.currentCountry.name,
                     "state": this.state.state,
                     "city": this.state.city,
                     "street_address": this.state.street_address,
                     'lga': this.state.lga
-                    // "admin": true
                 }
                 createUser(user, props)
             }else{

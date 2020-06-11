@@ -1,7 +1,7 @@
 import React from 'react'
 import { centerOfCountries } from '../components/CenterOfCountries'
 import {countriesList} from '../components/CountriesStatesAndCities'
-import { setCurrentCountryCenter, setCurrentCountry, setCurrentCountryID } from '../redux/actions'
+import { setCurrentCountryCenter, setCurrentCountry, setCurrentCountryID, setHelps } from '../redux/actions'
 import {connect} from 'react-redux'
 
 
@@ -10,9 +10,6 @@ const CountrySelector = (props) => {
     const {push, dispatch, viewBarters, viewCountryUpdates, viewHelpRequests, viewInfectionMap, viewQuarantineMap, signUp, reportAnInfection} = props
 
     const handleChangeCountry = (event) => {
-        // console.log(event.target.value)
-        // let country = countriesList.find(({id}) => id.toString() === event.target.value)
-        // console.log(country)
         if(event.target.value === 'Select country'){
             alert('Please chose a valid country')
         }else if(event.target.value === '999999'){
@@ -26,7 +23,6 @@ const CountrySelector = (props) => {
                 lng: selectedCountry.lng
             }
             let country = countriesList.find(({id}) => id.toString() === event.target.value)
-
             setCurrentCountryCenter(selectedCountryCenter, dispatch)
             //will use country from above as it comes with more needed parameters
             setCurrentCountry(dispatch, country)
@@ -67,6 +63,7 @@ const CountrySelector = (props) => {
                     <button className='page-buttons' type='submit' value='countryUpdates'>View Updates</button>
                 </>
         }else if(viewHelpRequests) {
+            setHelps(dispatch)
             return (<div>
                 <label>
                     <strong>Offer or Request Help?:</strong>

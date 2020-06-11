@@ -5,14 +5,14 @@ const HomePage = () => {
     return (
             <div className='entry-point'>
                 <div className='row'>
-                    <h3><strong > Welcome to COVID-19-Africa WebApp</strong></h3>
+                    <h3><strong > Welcome to AfroPanTrack WebApp</strong></h3>
 
                 </div>
 
                 <div className='row'>
                     <p>The purpose of this web app are as follows</p>
                     <ul>
-                        <li>Provide a trustworthy source of tracking the COVID-19 pandemic in Africa, starting from Nigeria</li>
+                        <li>Provide a trustworthy source of tracking pandemics like COVID-19 in Africa, starting from Nigeria</li>
                         <li>Provide facts in such a way as to not make people lax while at the same time preventing mass hysteria</li>
                         <li>Provide relevant updates from Government sources within Africa and all over the world</li>
                         <li>Combat dangerous false narratives from governments by enabling citizens report cases of infections, treatment centers, conditions of quarantine centers, etc</li>
