@@ -4,17 +4,12 @@ import FactCard from '../cards/FactCard'
 const CovidFacts = (props) => {
 
     const {loggedIn, first_name, allFacts} = props
-    console.log(props)
-    console.log(allFacts)
-    console.log(allFacts.AllFacts[0])
 
     const symptoms = allFacts.AllFacts.filter(fact => fact.category === 'symptoms')
-
 
     const transmissionFacts = allFacts.AllFacts.filter(fact => fact.category === 'transmission')
 
     const mythsOrRumors = allFacts.AllFacts.filter(fact => fact.category === 'mythOrRumor')
-    console.log(symptoms, transmissionFacts, mythsOrRumors)
 
     return (
         <>

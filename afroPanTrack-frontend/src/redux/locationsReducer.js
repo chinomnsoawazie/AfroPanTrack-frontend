@@ -28,7 +28,6 @@ const locationsReducer = (state = initialState, action) =>{
         }
 
         case SET_CURRENT_COUNTRY:
-        console.log(action.payload)
         return {
             ...state,
             SelectedCountry: action.payload

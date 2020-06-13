@@ -13,7 +13,6 @@ const initialState = {
 const viewsReducer = (state = initialState, action) =>{
     switch (action.type) {
         case RESET_VIEWS:
-            console.log("resetting views")
         return {
             ...state,
             viewInfectionMap: false,
@@ -26,7 +25,6 @@ const viewsReducer = (state = initialState, action) =>{
         }
 
         case SET_QUARANTINE_VIEW:
-            console.log("setting quarantine view")
         return {
             ...state,
             viewQuarantineMap: true,
@@ -39,7 +37,6 @@ const viewsReducer = (state = initialState, action) =>{
         }
 
         case SET_INFECTIONS_VIEW:
-            console.log("setting infections view")
         return {
             ...state,
             viewInfectionMap: true,

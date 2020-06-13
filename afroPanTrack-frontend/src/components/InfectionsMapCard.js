@@ -28,9 +28,7 @@ export class InfectionsMapCard extends Component {
     }
 
     render() {
-       const  mapStyles = {width: '100%', height: '90%'}
-       console.log(this.props)
-       
+       const  mapStyles = {width: '100%', height: '90%'}       
         return (
             <div>
                 <Map

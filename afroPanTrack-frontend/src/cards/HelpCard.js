@@ -1,41 +1,83 @@
 import React from 'react'
 import uuid from 'react-uuid'
-
+import {connect} from 'react-redux'
+import { offerHelp, createHelper } from '../redux/actions'
 
 const HelpCard = (props) => {
-    const {request, currentUser, allHelpers} = props
+    const {request, currentUser, allHelpers, token, dispatch} = props
 
-
+    //All helper objects associated with this request
     const helpersAssociatedWithThisRequest = allHelpers.filter(helper => helper.help_id === request.id)
 
-    const HelpersThatHelped = helpersAssociatedWithThisRequest.filter(helper => helper.followed_through === true)
-    const UserIdsOfThoseThatHelped = HelpersThatHelped.map(helper => helper.user_id)
-    const thoseThatHelped = request.helpers.filter(helper => UserIdsOfThoseThatHelped.includes(helper.id))
+    //Helper objects associated with this request who actually helped
+    const allHelpersThatHelped = helpersAssociatedWithThisRequest.filter(helper => helper.followed_through === true)
 
-    // console.log(helpersAssociatedWithThisRequest)
-    // console.log(HelpersThatHelped)
-    // console.log(UserIdsOfThoseThatHelped)
+    //Helper objects associated with this request who actually helped and want to be shown
+    const HelpersThatHelpedAndWantToBeShown = allHelpersThatHelped.filter(helper => helper.make_me_anonymous === false && helper.followed_through === true)
+    // console.log(HelpersThatHelpedAndWantToBeShown)
 
+     //User IDs of all helper objects associated with this request
+     const UserIdsOfAllHelperObjectsAssociatedWithThisRequest = helpersAssociatedWithThisRequest.map(helper => helper.user_id)
 
-    console.log(thoseThatHelped)
+    //User IDs of all that actually helped
+    const UserIdsOfAllThatHelped = allHelpersThatHelped.map(helper => helper.user_id)
 
-    // console.log(props)
+    //User IDs of all that actually helped and chose to be shown
+    const UserIdsOfHelpersThatWantToBeShown = HelpersThatHelpedAndWantToBeShown.map(helper => helper.user_id)
 
+    //User objects of those that actually helped. This is for admins and moderators
+    const allThatHelped = request.helpers.filter(helper => UserIdsOfAllThatHelped.includes(helper.id))
 
-    // const helpers =
+    //User objects of those that actually helped and wish to be shown. This is for all users to see
+    const helpersWhoChoseToBeShown = request.helpers.filter(userThatHelped => UserIdsOfHelpersThatWantToBeShown.includes(userThatHelped.id))
 
+    //Array of distinct User objects of those that actually helped and wish to be shown so as to avoid duplication of helper names.
+    const distinctHelpers = Array.from(new Set(helpersWhoChoseToBeShown.map(user => user.id)))
+    .map(id => {
+        return{
+            id: id,
+            first_name: helpersWhoChoseToBeShown.find(s => s.id === id).first_name,
+            last_name: helpersWhoChoseToBeShown.find(s => s.id === id).last_name,
 
-    //add a backend counter to state how many requests they've made
+        }
+    })
 
+    const handleOfferToHelp = (event) => {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        let todaysDate = mm + '/' + dd + '/' + yyyy;
 
+        if(event.target.name === 'regular-help'){
+            let helpParams = {
+                "helper_id": currentUser.id,
+                "help_offer_date": todaysDate
+            }
 
+            let newHelper = {
+                "user_id": currentUser.id,
+                "help_id": request.id,
+            }
+            offerHelp(helpParams, token, dispatch)
+            createHelper(newHelper, dispatch)
 
+        }else{
+            let helpParams = {
+                "helper_id": currentUser.id,
+                "help_offer_date": todaysDate
+            }
 
-//modify Helper in the backend to include followed_through and make_me_anonymous attributes. This will be used in the 
-//final render of done helps so that only those who actually helped will show up as they prefer
-            //create login counter controller at the backend to keep track of usage/logins
+            let newHelper = {
+                "user_id": currentUser.id,
+                "help_id": request.id,
+                "make_me_anonymous": true
+            }
+            offerHelp(helpParams, token, dispatch)
+            createHelper(newHelper, dispatch)
+        }
+    }
 
-// when someone offers to help, a Helper object will be created using the user_id of the helper and the help_id of the request
 
     return (
         <div className='fact-card'>
@@ -115,7 +157,7 @@ const HelpCard = (props) => {
             <label>
                 <strong>Helped By: </strong>
             </label>
-                {thoseThatHelped.map(helper => { 
+                {distinctHelpers.map(helper => { 
                     return (
                         <div key={uuid()}>
                         {helper.first_name} {helper.last_name},
@@ -123,25 +165,31 @@ const HelpCard = (props) => {
                 })}
             </div>
         </>
-            :
-            null
-            }
-
-
-            {request.done_status ?
-            null
         :
-        <button className='offer-help'>Offer to help</button>}
+        null
+        }
 
-
-       {/* <div className='row'>
-           <label>
-               <strong>Link: </strong>
-           </label>
-           <button className='link-button' onClick={handleLinkClick}>View source in new tab</button>
-       </div> */}
+        {request.done_status ?
+            null
+            :
+            <>
+            {UserIdsOfAllHelperObjectsAssociatedWithThisRequest.includes(currentUser.id)? 
+                    <button className='offer-help' name='regular-help'>You've already offered help</button>
+                :
+                    <>
+                    <button className='offer-help' name='regular-help' onClick={handleOfferToHelp}>Offer regular help</button>
+                    <button className='offer-help' name='anonymous-help' onClick={handleOfferToHelp}>Offer anonymous help</button>
+                    </>
+            }
+            </>
+        }
    </div>
     )
 }
 
-export default HelpCard
+const mapStateToProps = (state) => {
+    return {
+        token: state.allUserInfo.token
+    }
+}
+export default connect(mapStateToProps)(HelpCard)

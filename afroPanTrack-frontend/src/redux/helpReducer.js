@@ -8,12 +8,10 @@ const initialState = {
 const helpsReducer = (state = initialState, action) =>{
     switch (action.type) {
         case SET_HELP_REQUESTS:
-            console.log(action.payload)
         return {
             ...state,
             allHelps: action.payload
         }
-
 
         case SET_HELPERS:
             return {

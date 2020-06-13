@@ -27,11 +27,9 @@ export class QuarantineCenters extends Component {
                 })
             }
         }
-    
-    
+
         render() {
            const  mapStyles = {width: '100%', height: '90%'}
-           console.log(this.props)
             return (
                 <div>
                     <Map

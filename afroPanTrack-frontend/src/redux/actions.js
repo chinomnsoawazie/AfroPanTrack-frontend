@@ -6,7 +6,6 @@ import Geocode from 'react-geocode'
 export const setAPIKeys = (dispatch) =>{
   axios.get("http://localhost:3000/apikeys")
   .then(returnedAPIKeys =>{
-    console.log(returnedAPIKeys.data)
     dispatch({type: SET_API_KEYS, payload: returnedAPIKeys.data })
   })
   .catch((error) =>{
@@ -18,7 +17,6 @@ export const setAPIKeys = (dispatch) =>{
 export const setReports = (dispatch) => {
   axios.get("http://localhost:3000/reports")
   .then(allReports => {
-    console.log(allReports.data)
     dispatch({type: SET_REPORTS, payload: allReports.data})
   })
   .catch((error) =>{
@@ -27,10 +25,8 @@ export const setReports = (dispatch) => {
 }
 
 export const createReport = (dispatch, push, user, report) => {
-  console.log(report)
   axios.post("http://localhost:3000/reports", report)
   .then(returnedReports => {
-    console.log(returnedReports.data)
     alert('Report successfully created. You will now be directed to your dashboard')
     dispatch({type: SET_REPORTS, payload: returnedReports.data})
     if(user.admin){
@@ -48,11 +44,8 @@ export const createReport = (dispatch, push, user, report) => {
 
 //UPDATE ISSUES
 export const setCountryUpdates = (dispatch) => {
-  console.log(dispatch)
   axios.get("http://localhost:3000/update")
   .then(allUpdates => {
-    console.log(allUpdates)
-    console.log(allUpdates.data)
     dispatch({type: SET_COUNTRY_UPDATES, payload: allUpdates.data})
   })
   .catch((error) =>{
@@ -66,7 +59,6 @@ export const resetViews = (dispatch) => {
 }
 
 export const setInfectionsMapView = (dispatch) =>{
-  console.log("setting infections view", dispatch)
   dispatch({type: SET_INFECTIONS_VIEW})
 }
 
@@ -116,9 +108,6 @@ export const login = (user, push, dispatch) =>{
             console.log('Error:', error)
             alert('Incorrect username and/or password. Try again with correct credentials. Sign up if you do not have an account')
         })
-        .catch((error) =>{
-          console.log('Error:', error)
-        })
 }
 
 export const logout = (dispatch, push) => {
@@ -127,7 +116,6 @@ export const logout = (dispatch, push) => {
 }
 
 export const createUser = (user, props) => {
-  console.log(user)
   axios.post("http://localhost:3000/users", user)
   .then(userObj => {
     alert('Account successfully created. An email was sent to the email you provided during this registration. Please, please check your inbox and confirm your email address to continue using this app as a registered user')
@@ -148,7 +136,6 @@ export const resetLocations = (dispatch) => {
 }
 
 export const setCurrentCountry = (dispatch, country) => {
-  console.log(country)
   dispatch({type: SET_CURRENT_COUNTRY, payload: country})
 }
 
@@ -214,7 +201,6 @@ export const setQuarantineCenters = (dispatch) => {
 export const setBarters = (dispatch) => {
   axios.get("http://localhost:3000/quarantine_centre")
   .then(allCentres => {
-    console.log(allCentres.data)
     dispatch({type: SET_REPORTS, payload: allCentres.data})
   })
   .catch((error) =>{
@@ -226,7 +212,6 @@ export const setBarters = (dispatch) => {
 export const setFacts = (dispatch) => {
   axios.get("http://localhost:3000/facts")
   .then(allFacts => {
-    console.log(allFacts.data)
     dispatch({type: SET_FACTS, payload: allFacts.data})
   })
   .catch((error) =>{
@@ -239,12 +224,40 @@ export const setFacts = (dispatch) => {
 export const setHelps = (dispatch) => {
   axios.get("http://localhost:3000/help")
   .then(allHelps => {
-    console.log(allHelps.data)
     dispatch({type: SET_HELP_REQUESTS, payload: allHelps.data.AllHelp})
     dispatch({type: SET_HELPERS, payload: allHelps.data.AllHelpers} )
   })
   .catch((error) =>{
     console.log('Error:', error)
   })
+}
 
+export const offerHelp = (helpParams, token, dispatch) => {
+  let config = {
+    headers: {'Authorization': "bearer" + token}
+  }
+  let bodyParameters = helpParams
+  axios.patch(`http://localhost:3000/help/${helpParams.id}`, bodyParameters, config)
+      .then(allHelps => {
+        alert('Report successfully created. You will now be directed to your dashboard')
+        dispatch({type: SET_HELP_REQUESTS, payload: allHelps.data.AllHelp})
+      })
+      .catch((error => {
+        alert('Edit not successful')
+      }))
+}
+
+//HELPER ISSUES
+export const createHelper = (helper, dispatch) => {
+    axios.post("http://localhost:3000/helper", helper)
+    .then(allHelps => {
+      console.log(allHelps)
+    dispatch({type: SET_HELPERS, payload: allHelps.data.AllHelpers})
+    }
+  )
+  .catch((error) =>{
+    console.log('Error:', error)
+  })
+        
+        // dispatch({type: SET_HELPERS, payload: allHelps.data.AllHelpers} ) 
 }
