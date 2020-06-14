@@ -239,7 +239,7 @@ export const offerHelp = (helpParams, token, dispatch) => {
   let bodyParameters = helpParams
   axios.patch(`http://localhost:3000/help/${helpParams.id}`, bodyParameters, config)
       .then(allHelps => {
-        alert('Report successfully created. You will now be directed to your dashboard')
+        alert('Help offer successfully recorded')
         dispatch({type: SET_HELP_REQUESTS, payload: allHelps.data.AllHelp})
       })
       .catch((error => {
@@ -247,17 +247,33 @@ export const offerHelp = (helpParams, token, dispatch) => {
       }))
 }
 
+export const createHelpRequest = (help, dispatch, push, user) => {
+  axios.post("http://localhost:3000/help", help)
+  .then(allHelps => {
+    dispatch({type: SET_HELP_REQUESTS, payload: allHelps.data.AllHelp})
+    alert('Help request successfully created')
+    alert('You will now be redirected to your user panel')
+    if(user.admin){
+      push('/admin-panel')
+    }else if(user.moderator){
+      push('/moderator-panel')
+    }else{
+      push('/user-panel')
+    }
+  })
+  .catch(error => {
+      alert('Help request not created')
+  })
+}
+
 //HELPER ISSUES
 export const createHelper = (helper, dispatch) => {
     axios.post("http://localhost:3000/helper", helper)
     .then(allHelps => {
-      console.log(allHelps)
     dispatch({type: SET_HELPERS, payload: allHelps.data.AllHelpers})
     }
   )
   .catch((error) =>{
     console.log('Error:', error)
   })
-        
-        // dispatch({type: SET_HELPERS, payload: allHelps.data.AllHelpers} ) 
 }

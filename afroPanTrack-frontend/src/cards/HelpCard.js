@@ -90,7 +90,7 @@ const HelpCard = (props) => {
 
        <div className='row'>
            <label>
-               <strong>Date request was made: </strong>
+               <strong>Request made on: </strong>
            </label>
                {request.date_requested}
        </div>
@@ -100,13 +100,6 @@ const HelpCard = (props) => {
                <strong>Request needed by: </strong>
            </label>
                {request.date_required}
-       </div>
-
-       <div className='row'>
-           <label>
-               <strong>Date Reported: </strong>
-           </label>
-               {request.date_published}
        </div>
 
        <div className='row'>

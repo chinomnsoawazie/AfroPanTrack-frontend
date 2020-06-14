@@ -3,6 +3,7 @@ import HelpCard from '../cards/HelpCard'
 
 function OfferHelp(props) {
     const {allHelps, currentCountry, user, allHelpers} = props
+    console.log(allHelps)
 
     const countryRequests = allHelps.filter(help => help.country === currentCountry.name)
     const ongoingHelp = countryRequests.filter(help => help.done_status === false)

@@ -16,7 +16,7 @@ import Barter from '../components/Barter'
 import CovidFacts from '../components/CovidFacts'
 import GlobalCovidUpdates from '../components/GlobalCovidUpdates'
 import OfferHelp from '../components/OfferHelp'
-import RequestHelp from '../components/RequestHelp'
+import RequestHelp from '../forms/RequestHelp'
 import CountryUpdates from '../components/CountryUpdates'
 
 
@@ -51,8 +51,8 @@ const MainContainer = (props) => {
             <Route exact path='/barter' render = { () => <Barter /> } />
             <Route exact path='/covid-facts' render = { () => <CovidFacts allFacts={allFacts} loggedIn={loggedIn} first_name={first_name}/>} />
             <Route exact path='/global-covid-updates' render = { () => <GlobalCovidUpdates />} />
-            <Route exact path='/offer-help' render = { () => <OfferHelp allHelps={allHelps} allHelpers={allHelpers} user={user} currentCountry={currentCountry}/>} />
-            <Route exact path='/request-help' render = { () => <RequestHelp /> } />
+            <Route exact path='/offer-help' render = { () => <OfferHelp allHelps={allHelps} allHelpers={allHelpers} user={user} currentCountry={currentCountry} currentStateID={currentStateID} currentCityID={currentCityID}/>} />
+            <Route exact path='/request-help' render = { () => <RequestHelp currentCountry={currentCountry} dispatch={dispatch} appUserLocation={appUserLocation} user={user} push={props.history.push} currentStateID={currentStateID} currentCityID={currentCityID}/> } />
             <Route exact path='/country-updates' render = { () => <CountryUpdates allCountryUpdates={allCountryUpdates} loggedIn={loggedIn} first_name={first_name} currentCountry={currentCountry}/>} />
 
 

@@ -64,6 +64,7 @@ const locationsReducer = (state = initialState, action) =>{
         }
 
         case SET_CURRENT_STATE_ID:
+            console.log('setting stateID')
         return {
             ...state,
             currentStateID: action.payload
