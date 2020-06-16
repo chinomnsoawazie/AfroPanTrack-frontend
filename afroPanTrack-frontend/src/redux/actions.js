@@ -90,6 +90,7 @@ export const setSignupView = (dispatch) => {
 export const login = (user, push, dispatch) =>{
   axios.post('http://localhost:3000/login', user)
         .then(r => {
+          console.log(r)
           if(r.data.user.email_confirmed){
             dispatch({type: SET_USER, payload: r.data})
             dispatch({type: SET_USER_COUNTRY, payload: r.data.user.country})

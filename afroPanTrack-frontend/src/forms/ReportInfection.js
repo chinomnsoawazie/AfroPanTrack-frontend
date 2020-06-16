@@ -73,12 +73,12 @@ export class ReportInfection extends Component {
                 description: this.state.description,
                 //Dummy lat and lng used for development purposes. to be replaced
                 //by that pulled from the device on live app
-                lat: chosenLocation.lat,
-                lng: chosenLocation.lng,
+                // lat: chosenLocation.lat,
+                // lng: chosenLocation.lng,
                 //comment back location coordinates below and comment out the one 
                 //above for live app
-                // lat: this.props.appUserCoordinates.lat,
-                // lng: this.props.appUserCoordinates.lng,
+                lat: this.props.appUserCoordinates.lat,
+                lng: this.props.appUserCoordinates.lng,
                 medical_attention_observed: this.state.medical_attention_observed,
                 medical_attention_description: this.state.medical_attention_description,
                 can_we_follow_up: this.state.can_we_follow_up,
