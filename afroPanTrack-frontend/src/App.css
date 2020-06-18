@@ -125,13 +125,13 @@ height: 3vh;
 }
 
 .panel-heading {
-  padding-top: 5vh;
+  padding-top: 3vh;
 }
 
 .panel-heading-button{
   border: none;
   color: white;
-  padding: 1vw 45%;
+  padding: 1vw 49%;
   text-align: center;
   text-decoration: none;
   display: inline-block;

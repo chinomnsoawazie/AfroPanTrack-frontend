@@ -3,10 +3,9 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logout, setQuarantineCentersView, setInfectionsMapView, setReportInfectionsView, setHelpRequestsView, setBartersView, setSignupView, setQuarantineCenters, setReports, setCountryUpdatesView, setCountryUpdates} from '../redux/actions'
 
-
 const NavBar = (props) => {
 
-    const {loggedIn, first_name, dispatch} = props
+    const {loggedIn, user, dispatch} = props
 
 
     const reportInfection = () => {
@@ -58,6 +57,15 @@ const NavBar = (props) => {
         props.history.push('/select-country-only')
     }
 
+    const handleViewMyPanel = () => {
+        if(user.admin){
+            props.history.push('/admin-panel')
+        }else if(user.moderator){
+            props.history.push('/moderator-panel')
+        }else{
+            props.history.push('/user-panel')
+        }
+    }
 
     return (
         <header className='nav-bar'>
@@ -83,16 +91,13 @@ const NavBar = (props) => {
                     <button onClick={handleBarterStuff} className="nav-buttons">Barter stuff</button>
                 </div>
 
-
-
                 {loggedIn ?
                <>
-
                 <div className='column'>
-                    Welcome {first_name}!
+                    Welcome {user.first_name}!
                 </div>
                 <div className='column'>
-                    <button onClick={() => props.history.push('/user-profile')} className="nav-buttons">Profile</button>
+                    <button onClick={handleViewMyPanel} className="nav-buttons">My Panel</button>
                     <button onClick={() => logout(props.dispatch, props.history.push)} className="nav-buttons">logout</button>
                 </div>
                </>
@@ -102,7 +107,6 @@ const NavBar = (props) => {
                     <button onClick={() => props.history.push('/login')} className="nav-buttons">Login</button>
                 </div>
             }
-            
             </nav>
         </header>
     )
@@ -111,7 +115,7 @@ const NavBar = (props) => {
 const mapStateToProps = (state) => {
     return{
         loggedIn: state.allUserInfo.loggedIn,
-        first_name: state.allUserInfo.first_name
+        user: state.allUserInfo.user
     }
 }
 

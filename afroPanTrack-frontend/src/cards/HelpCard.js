@@ -19,14 +19,10 @@ const HelpCard = (props) => {
      //User IDs of all helper objects associated with this request
      const UserIdsOfAllHelperObjectsAssociatedWithThisRequest = helpersAssociatedWithThisRequest.map(helper => helper.user_id)
 
-    //User IDs of all that actually helped
-    const UserIdsOfAllThatHelped = allHelpersThatHelped.map(helper => helper.user_id)
 
     //User IDs of all that actually helped and chose to be shown
     const UserIdsOfHelpersThatWantToBeShown = HelpersThatHelpedAndWantToBeShown.map(helper => helper.user_id)
 
-    //User objects of those that actually helped. This is for admins and moderators
-    const allThatHelped = request.helpers.filter(helper => UserIdsOfAllThatHelped.includes(helper.id))
 
     //User objects of those that actually helped and wish to be shown. This is for all users to see
     const helpersWhoChoseToBeShown = request.helpers.filter(userThatHelped => UserIdsOfHelpersThatWantToBeShown.includes(userThatHelped.id))

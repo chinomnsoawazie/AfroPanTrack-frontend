@@ -1,3 +1,14 @@
 TO DOS
 1. create login counter controller at the backend to keep track of usage/logins
 2. Add logout to the reducers tied to all components that need a logged in user to be displayed as required. Kinda cleaning up after logout
+
+
+
+
+BARTERS:
+Conditions:
+- A barter is requested with no bids yet
+- A barter is requested and have a bid(s)
+    - In this case have a button to accept the bid(s)
+- A barter is requested, have a bid and has been accepted
+    -Means it is done
