@@ -3,7 +3,6 @@ import uuid from 'react-uuid'
 
 function PanelCompletedHelpCard(props) {
     const {help} = props
-
     return (
         <div className='fact-card'>
              <div className='row'>
@@ -22,17 +21,18 @@ function PanelCompletedHelpCard(props) {
                 <label><strong>Date Completed: </strong></label>{help.date_completed}
             </div>
             <div className='row'>
-                <label><strong>Helpers: </strong></label>{help.helpers.map(helper => {
+                <label><strong>HELPERS: </strong></label>{help.helpers.map(helper => {
                     return (
                         <div key={uuid()}> 
-                            {helper.first_name}, {helper.last_name}<br/>
+                            <label><strong>Helper: </strong></label>{helper.helper.first_name}, {helper.helper.last_name}<br/>
+                            <label><strong>Quantity Given: </strong></label>{helper.qty_offered}<br/>
+                            <button className='offer-help'>Thank Helper</button>
                         </div>
                     )
                 } )}
             </div>
-            <div className='row'>
-                <button className='offer-help'>Thank Helper</button>
-            </div>
+            {/* <div className='row'>
+            </div> */}
         </div>
     )
 }

@@ -7,12 +7,16 @@ import PanelReportCard from '../cards/PanelReportCard'
 import PanelQuarantineCenterCard from '../cards/PanelQuarantineCenterCard'
 import PanelClosedBids from '../cards/PanelClosedBids'
 import PanelCompletedHelpCard from '../cards/PanelCompletedHelpCard'
+import uuid from 'react-uuid'
+
+
 
 const UserPanel = (props) => {
     const{user} = props
     // console.log(user)
     const completedHelp = user.helps.filter(help => help.done_status === true )
     const ongoingHelp = user.helps.filter(help => help.done_status === false)
+    const ongoingBarters = user.barter_user_bid_on.filter(barter => barter.closed_status === false)
 
     return (
     <>
@@ -51,13 +55,25 @@ const UserPanel = (props) => {
 
             <div className='column'>
                 <h3>Items I am Bidding On</h3>
-            {user.barter_user_bid_on.map(bid => <PanelBarterBidsCard key={bid.id} bid={bid} />)}
+            {ongoingBarters.map(bid => <PanelBarterBidsCard key={bid.id} bid={bid} />)}
             </div>
 
 
             <div className='column'>
-                <h3>Items Bid On</h3>
-            {user.barters_completed.map(request => <PanelClosedBids key={request.id} request={request} />)}
+                <div className='row'>
+                    <h3>Items I bid on and Won</h3>
+                    {user.barters_completed[0].map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
+                </div>
+
+                <div className='row'>
+                    <h3>Items I Requested and Got</h3>
+                    {user.barters_completed[1].map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
+                </div>
+
+                <div className='row'>
+                    <h3>Items I bid on and lost</h3>
+                    {user.barters_completed[2].map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
+                </div>
             </div>
         </div>
 
@@ -67,12 +83,12 @@ const UserPanel = (props) => {
         <div className='row updates-view'>
             <div className='column'>
                 <h3>Reports I filed</h3>
-            {user.reports.map(report => <PanelReportCard key={report.id} request={report}/>)}
+            {user.reports.map(report => <PanelReportCard key={report.id} report={report}/>)}
             </div>
 
             <div className='column'>
                 <h3>Quarantine Centres I reported</h3>
-            {user.quarantine_centres.map(request => <PanelQuarantineCenterCard key={request.id} request={request} />)}
+            {user.quarantine_centres.map(center => <PanelQuarantineCenterCard key={center.id} center={center} />)}
             </div>
         </div>
    </>

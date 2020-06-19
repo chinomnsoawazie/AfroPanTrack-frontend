@@ -7,11 +7,11 @@ function PanelBarterBidsCard(props) {
     return (
         <div className='fact-card'>
             <div className='row'>
-                <label><strong>Requestor: </strong></label>{bid.requestor.first_name}, {bid.requestor.last_name}
+                <label><strong>Requestor: </strong></label>{bid.bid_owner.first_name}, {bid.bid_owner.last_name}
             </div>
 
             <div className='row'>
-                <label><strong>Requestor Location: </strong></label>{bid.requestor.street_address}, {bid.requestor.city}, {bid.requestor.state}<br/><strong>LGA:</strong>{bid.requestor.lga}
+                <label><strong>Requestor Location: </strong></label>{bid.bid_owner.street_address}, {bid.bid_owner.city}, {bid.bid_owner.state}<br/><strong>LGA:</strong>{bid.bid_owner.lga}
             </div>
 
             <div className='row'>
@@ -27,10 +27,9 @@ function PanelBarterBidsCard(props) {
             </div>
 
             <div className='row'>
-                <label><strong>Quantity I Offered: </strong></label>{bid.qty_offered}
+                <label><strong>Quantity I Offered: </strong></label>{bid.qty_offered}<br/>
                 <button className='offer-help'>Change my bid</button>
                 <button className='offer-help'>Withdraw my bid</button><br/>
-<br/>
             </div>
 
 
@@ -40,7 +39,7 @@ function PanelBarterBidsCard(props) {
                     return(
                         <div key={uuid()}>
                             <div className='row'>
-                                <label><strong>Bidder: </strong></label>{bid.bidder.first_name}
+                                <label><strong>Bidder: </strong></label>{bid.bidder.first_name}, {bid.bidder.last_name}
                             </div>
                             <div className='row'>
                                 <label><strong>Quantity Offered: </strong></label>{bid.qty_offered}
@@ -51,44 +50,6 @@ function PanelBarterBidsCard(props) {
                 }
             </div>
 
-
-            {/* <div className='row'>
-                <label><strong>{bid.done ? "Were there bids?" : "Are There Bids?"} </strong></label>
-                {wereThereBids()}
-            </div> */}
-{/* 
-            {!bid.done && bid.bids.length > 0 ?
-                <>  
-                    <div className='row'>
-                        <label><strong>Bidders: </strong></label>
-                        {bid.bids.map(bid => {
-                            return (
-                                <div key={uuid()}> 
-                                    {bid.bidder.first_name}, {bid.bidder.last_name} 
-                                    <button className='offer-help'>Accept bid</button><br/>
-                                </div>)} )
-                        }
-                    </div>
-                </>
-                    :
-                    null
-                }
-
-            {bid.done && bid.bids.length > 0 ?
-                <>  
-                    <div className='row'>
-                        <label><strong>Bidders: </strong></label>
-                        {bid.bids.map(bid => {
-                            return (
-                                <div key={uuid()}> 
-                                    {bid.bidder.first_name}, {bid.bidder.last_name} 
-                                </div>)} )
-                        }
-                    </div>
-                </>
-                    :
-                    null
-                } */}
                 </div>
     )
 }

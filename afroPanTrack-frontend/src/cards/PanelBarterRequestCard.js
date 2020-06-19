@@ -3,6 +3,7 @@ import uuid from 'react-uuid'
 
 function PanelBarterRequestCard(props) {
     const {barter} = props
+    // console.log(barter)
 
     const wereThereBids = () => {
         if(barter.done && barter.bids.length > 0){
@@ -59,7 +60,7 @@ function PanelBarterRequestCard(props) {
                         {barter.bids.map(bid => {
                             return (
                                 <div key={uuid()}> 
-                                    {bid.bidder.first_name}, {bid.bidder.last_name} 
+                                    {bid.bid_owner.first_name}, {bid.bid_owner.last_name} 
                                     <button className='offer-help'>Accept bid</button><br/>
                                 </div>)} )
                         }
@@ -76,7 +77,7 @@ function PanelBarterRequestCard(props) {
                         {barter.bids.map(bid => {
                             return (
                                 <div key={uuid()}> 
-                                    {bid.bidder.first_name}, {bid.bidder.last_name} 
+                                    {bid.bid_owner.first_name}, {bid.bid_owner.last_name} 
                                 </div>)} )
                         }
                     </div>
