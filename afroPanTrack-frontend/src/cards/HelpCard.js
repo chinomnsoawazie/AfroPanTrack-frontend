@@ -5,9 +5,12 @@ import { offerHelp, createHelper } from '../redux/actions'
 
 const HelpCard = (props) => {
     const {request, currentUser, allHelpers, token, dispatch} = props
+    console.log(request)
 
     //All helper objects associated with this request
     const helpersAssociatedWithThisRequest = allHelpers.filter(helper => helper.help_id === request.id)
+
+    console.log(helpersAssociatedWithThisRequest)
 
     //Helper objects associated with this request who actually helped
     const allHelpersThatHelped = helpersAssociatedWithThisRequest.filter(helper => helper.followed_through === true)
@@ -25,7 +28,9 @@ const HelpCard = (props) => {
 
 
     //User objects of those that actually helped and wish to be shown. This is for all users to see
-    const helpersWhoChoseToBeShown = request.helpers.filter(userThatHelped => UserIdsOfHelpersThatWantToBeShown.includes(userThatHelped.id))
+    const helpersWhoChoseToBeShown = request.helpers.filter(userThatHelped => UserIdsOfHelpersThatWantToBeShown.includes(userThatHelped.helper.id))
+
+    // console.log(helpersWhoChoseToBeShown)
 
     //Array of distinct User objects of those that actually helped and wish to be shown so as to avoid duplication of helper names.
     const distinctHelpers = Array.from(new Set(helpersWhoChoseToBeShown.map(user => user.id)))
@@ -37,6 +42,8 @@ const HelpCard = (props) => {
 
         }
     })
+
+    // console.log(distinctHelpers)
 
     const handleOfferToHelp = (event) => {
         var today = new Date();
