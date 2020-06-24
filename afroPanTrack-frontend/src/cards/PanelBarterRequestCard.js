@@ -32,13 +32,13 @@ function PanelBarterRequestCard(props) {
             </div>
             
             <div className='row'>
-                <label><strong>Batter Completed? </strong></label>{barter.done ? "Yes" : "No"}
+                <label><strong>Barter Completed? </strong></label>{barter.done ? "Yes" : "No"}
             </div>
 
                 {barter.done ?
                 <>  
                     <div className='row'>
-                        <label><strong>Battered With: </strong></label>{barter.barter_receiver.first_name}, {barter.barter_receiver.last_name}
+                        <label><strong>Bartered With: </strong></label>{barter.barter_receiver.first_name}, {barter.barter_receiver.last_name}
                     </div>
                     <div className='row'>
                     <label><strong>Quantity Received: </strong></label>{barter.quantity_received}

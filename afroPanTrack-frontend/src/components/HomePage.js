@@ -17,7 +17,7 @@ const HomePage = () => {
                         <li>Provide relevant updates from Government sources within Africa and all over the world</li>
                         <li>Combat dangerous false narratives from governments by enabling citizens report cases of infections, treatment centers, conditions of quarantine centers, etc</li>
                         <li>Enable the vulnerable and people in need request help and possibly connect with helpers</li>
-                        <li>Enable some sort of batter system just in case things come to that</li>
+                        <li>Enable some sort of barter system just in case things come to that</li>
                     </ul>
                     <p>To view information, including using the INFECTION MAP, you do not need an account. However, to report an infection, request help, batter items, or report on quarantine centers, you will need an account.
                         This is to make sure these reports are being filed by real people, and also enable verification of those reports.</p>

@@ -2,7 +2,6 @@ import React from 'react'
 
 function PanelQuarantineCenterCard(props) {
     const {center} = props
-    console.log(center)
     return (
         <div className='fact-card'>
             <div className='row'>

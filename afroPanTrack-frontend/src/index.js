@@ -17,6 +17,8 @@ import quarantineCentersReducer from './redux/quarantineCentersReducer';
 import countryUpdatesReducer from './redux/countryUpdatesReducer';
 import factsReducer from './redux/factsReducer';
 import helpsReducer from './redux/helpReducer';
+import chartsReducer from './redux/chartsReducer';
+
 
 const rootReducer = combineReducers({
     allUserInfo: userReducer,
@@ -27,6 +29,7 @@ const rootReducer = combineReducers({
     allCountryUpdateInfo: countryUpdatesReducer,
     allFactInfo: factsReducer,
     allHelpInfo: helpsReducer,
+    allChartInfo: chartsReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

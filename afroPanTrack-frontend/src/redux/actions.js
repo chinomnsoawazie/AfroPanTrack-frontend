@@ -1,4 +1,6 @@
-import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY, SET_CENTRES, SET_FACTS, SET_COUNTRY_UPDATES, SET_HELP_REQUESTS, SET_HELPERS} from '../redux/actionTypes'
+import { SET_USER, LOGOUT, SET_API_KEYS, SET_REPORTS, RESET_LOCATION_IDS, SET_CURRENT_COUNTRY_ID, SET_CURRENT_STATE_ID, SET_CURRENT_CITY_ID, SET_CURRENT_COUNTRY_CENTER, SET_APP_USER_LOCATION, SET_APP_USER_COORDINATES, RESET_VIEWS, SET_INFECTIONS_VIEW, SET_QUARANTINE_VIEW, SET_CURRENT_COUNTRY, SET_UPDATES_VIEW, SET_HELP_REQUESTS_VIEW, SET_BARTERS_VIEW, SET_REPORT_INFECTIONS_VIEW, SET_SIGNUP_VIEW, RESET_LOCATION_PARAMS, SET_USER_COUNTRY, SET_CENTRES, SET_FACTS, SET_COUNTRY_UPDATES, SET_HELP_REQUESTS, SET_HELPERS, 
+  SET_GLOBAL_DATA,
+  SET_GLOBAL_CHART_DATA} from '../redux/actionTypes'
 import axios from 'axios'
 import Geocode from 'react-geocode'
 
@@ -90,7 +92,6 @@ export const setSignupView = (dispatch) => {
 export const login = (user, push, dispatch) =>{
   axios.post('http://localhost:3000/login', user)
         .then(r => {
-          console.log(r)
           if(r.data.user.email_confirmed){
             dispatch({type: SET_USER, payload: r.data})
             dispatch({type: SET_USER_COUNTRY, payload: r.data.user.country})
@@ -277,4 +278,20 @@ export const createHelper = (helper, dispatch) => {
   .catch((error) =>{
     console.log('Error:', error)
   })
+}
+
+
+
+//COVID DATA ISSUES
+export const setGlobalCovidStat = (dispatch, dates) => {
+  let globalCOVIDData = []
+
+  async function getData(date){
+    let response = await axios.get(`https://covid-api.com/api/reports/total?date=${date}`).then(covidData => {
+      globalCOVIDData.push(covidData.data.data)
+    })
+    dispatch({type: SET_GLOBAL_DATA, payload: globalCOVIDData})
+    dispatch({type: SET_GLOBAL_CHART_DATA, payload: globalCOVIDData })
+  }
+  dates.map(date => getData(date))
 }

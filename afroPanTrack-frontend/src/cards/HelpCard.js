@@ -4,46 +4,47 @@ import {connect} from 'react-redux'
 import { offerHelp, createHelper } from '../redux/actions'
 
 const HelpCard = (props) => {
-    const {request, currentUser, allHelpers, token, dispatch} = props
-    console.log(request)
+    const {request, currentUser, token, dispatch} = props
 
     //All helper objects associated with this request
-    const helpersAssociatedWithThisRequest = allHelpers.filter(helper => helper.help_id === request.id)
-
-    console.log(helpersAssociatedWithThisRequest)
+    const helperObjectsAssociatedWithThisRequest = request.helpers
 
     //Helper objects associated with this request who actually helped
-    const allHelpersThatHelped = helpersAssociatedWithThisRequest.filter(helper => helper.followed_through === true)
+    const allHelperObjectsThatHelped = helperObjectsAssociatedWithThisRequest.filter(helper => helper.followed_through === true)
 
     //Helper objects associated with this request who actually helped and want to be shown
-    const HelpersThatHelpedAndWantToBeShown = allHelpersThatHelped.filter(helper => helper.make_me_anonymous === false && helper.followed_through === true)
+    const HelperObjectsThatHelpedAndWantToBeShown = allHelperObjectsThatHelped.filter(helper => helper.make_me_anonymous === false && helper.followed_through === true)
     // console.log(HelpersThatHelpedAndWantToBeShown)
 
-     //User IDs of all helper objects associated with this request
-     const UserIdsOfAllHelperObjectsAssociatedWithThisRequest = helpersAssociatedWithThisRequest.map(helper => helper.user_id)
+    //  //User IDs of all helper objects associated with this request
+     const UserIdsOfAllHelpersAssociatedWithThisRequest = helperObjectsAssociatedWithThisRequest.map(helperObject => helperObject.helper.id)
 
+     //User objects of those that actually helped. This is to know all that helped so the array length of the unique users can be calculated
+     const userObjectsOfAllHelpers= allHelperObjectsThatHelped.map(helperObject => helperObject.helper)
 
-    //User IDs of all that actually helped and chose to be shown
-    const UserIdsOfHelpersThatWantToBeShown = HelpersThatHelpedAndWantToBeShown.map(helper => helper.user_id)
-
+     const distinctHelpers = Array.from(new Set(userObjectsOfAllHelpers.map(user => user.id)))
+     .map(id => {
+         return{
+             id: id,
+             first_name: userObjectsOfAllHelpers.find(s => s.id === id).first_name,
+             last_name: userObjectsOfAllHelpers.find(s => s.id === id).last_name,
+ 
+         }
+     })
 
     //User objects of those that actually helped and wish to be shown. This is for all users to see
-    const helpersWhoChoseToBeShown = request.helpers.filter(userThatHelped => UserIdsOfHelpersThatWantToBeShown.includes(userThatHelped.helper.id))
-
-    // console.log(helpersWhoChoseToBeShown)
+    const userObjectsOfHelpersWhoChoseToBeShown = HelperObjectsThatHelpedAndWantToBeShown.map(helperObject => helperObject.helper)
 
     //Array of distinct User objects of those that actually helped and wish to be shown so as to avoid duplication of helper names.
-    const distinctHelpers = Array.from(new Set(helpersWhoChoseToBeShown.map(user => user.id)))
+    const distinctHelpersThatWantToBeShown = Array.from(new Set(userObjectsOfHelpersWhoChoseToBeShown.map(user => user.id)))
     .map(id => {
         return{
             id: id,
-            first_name: helpersWhoChoseToBeShown.find(s => s.id === id).first_name,
-            last_name: helpersWhoChoseToBeShown.find(s => s.id === id).last_name,
+            first_name: userObjectsOfHelpersWhoChoseToBeShown.find(s => s.id === id).first_name,
+            last_name: userObjectsOfHelpersWhoChoseToBeShown.find(s => s.id === id).last_name,
 
         }
     })
-
-    // console.log(distinctHelpers)
 
     const handleOfferToHelp = (event) => {
         var today = new Date();
@@ -80,7 +81,6 @@ const HelpCard = (props) => {
             createHelper(newHelper, dispatch)
         }
     }
-
 
     return (
         <div className='fact-card'>
@@ -151,14 +151,25 @@ const HelpCard = (props) => {
 
             <div className='row'>
             <label>
-                <strong>Helped By: </strong>
+                <strong>No of People That Helped: </strong>
             </label>
-                {distinctHelpers.map(helper => { 
+            {distinctHelpers.length}
+            </div>
+
+            <div className='row'>
+            <label>
+                <strong>Helpers who Chose To Be Shown: </strong>
+            </label>
+            {distinctHelpersThatWantToBeShown.length > 0 ?
+                distinctHelpersThatWantToBeShown.map(helper => { 
                     return (
                         <div key={uuid()}>
                         {helper.first_name} {helper.last_name},
                         </div>)
-                })}
+                })
+                :
+                "No helper wants to be shown"
+            }
             </div>
         </>
         :
@@ -169,7 +180,7 @@ const HelpCard = (props) => {
             null
             :
             <>
-            {UserIdsOfAllHelperObjectsAssociatedWithThisRequest.includes(currentUser.id)? 
+            {UserIdsOfAllHelpersAssociatedWithThisRequest.includes(currentUser.id)? 
                     <button className='offer-help' name='regular-help'>You've already offered help</button>
                 :
                     <>

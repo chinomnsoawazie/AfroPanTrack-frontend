@@ -21,7 +21,7 @@ import CountryUpdates from '../components/CountryUpdates'
 
 
 const MainContainer = (props) => {
-    const {google_maps_api_key, allReports, allCountryUpdates, allCentres, allFacts, allHelps, allHelpers,
+    const {google_maps_api_key, allReports, allCountryUpdates, allCentres, allFacts, allHelps, allHelpers, globalData, globalChartData,
             dispatch, currentCityID, currentStateID, appUserCoordinates, currentCountry, currentCountryCenter,
              appUserLocation, user_id,  user, loggedIn, first_name
           } = props
@@ -50,10 +50,10 @@ const MainContainer = (props) => {
             <Route exact path='/report-infection' render = { () => <ReportInfection appUserLocation={appUserLocation} user_id={user_id} appUserCoordinates={appUserCoordinates} dispatch={dispatch} push={props.history.push} user={user} currentCountry={currentCountry} currentStateID={currentStateID} currentCityID={currentCityID}/>} />
             <Route exact path='/barter' render = { () => <Barter /> } />
             <Route exact path='/covid-facts' render = { () => <CovidFacts allFacts={allFacts} loggedIn={loggedIn} first_name={first_name}/>} />
-            <Route exact path='/global-covid-updates' render = { () => <GlobalCovidUpdates />} />
+            <Route exact path='/global-covid-updates' render = { () => <GlobalCovidUpdates globalData={globalData} globalChartData={globalChartData}/>} />
             <Route exact path='/offer-help' render = { () => <OfferHelp allHelps={allHelps} allHelpers={allHelpers} user={user} currentCountry={currentCountry} currentStateID={currentStateID} currentCityID={currentCityID}/>} />
             <Route exact path='/request-help' render = { () => <RequestHelp currentCountry={currentCountry} dispatch={dispatch} appUserLocation={appUserLocation} user={user} push={props.history.push} currentStateID={currentStateID} currentCityID={currentCityID}/> } />
-            <Route exact path='/country-updates' render = { () => <CountryUpdates allCountryUpdates={allCountryUpdates} loggedIn={loggedIn} first_name={first_name} currentCountry={currentCountry}/>} />
+            <Route exact path='/country-updates' render = { () => <CountryUpdates allCountryUpdates={allCountryUpdates} loggedIn={loggedIn} first_name={first_name} currentCountry={currentCountry} globalData={globalData}/>} />
 
 
         </Switch>
@@ -105,6 +105,10 @@ const mapStateToProps = (state) => {
         /**HELP ISSUES */
         allHelps: state.allHelpInfo.allHelps,
         allHelpers: state.allHelpInfo.allHelpers,
+
+        /*COVID CHART ISSUES */
+        globalData: state.allChartInfo.globalData,
+        globalChartData: state.allChartInfo.globalChartData,
 
 
     }

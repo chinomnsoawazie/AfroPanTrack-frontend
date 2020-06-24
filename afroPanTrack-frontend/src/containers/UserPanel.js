@@ -13,7 +13,6 @@ import uuid from 'react-uuid'
 
 const UserPanel = (props) => {
     const{user} = props
-    // console.log(user)
     const completedHelp = user.helps.filter(help => help.done_status === true )
     const ongoingHelp = user.helps.filter(help => help.done_status === false)
     const ongoingBarters = user.barter_user_bid_on.filter(barter => barter.closed_status === false)
@@ -62,17 +61,17 @@ const UserPanel = (props) => {
             <div className='column'>
                 <div className='row'>
                     <h3>Items I bid on and Won</h3>
-                    {user.barters_completed[0].map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
+                    {user.barters_completed.closedReceivedBartersWithDetails.map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
                 </div>
 
                 <div className='row'>
                     <h3>Items I Requested and Got</h3>
-                    {user.barters_completed[1].map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
+                    {user.barters_completed.closedRequestedBartersWithDetails.map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
                 </div>
 
                 <div className='row'>
                     <h3>Items I bid on and lost</h3>
-                    {user.barters_completed[2].map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
+                    {user.barters_completed.lostBartersWithDetails.map(bid => <PanelClosedBids key={uuid()} bid={bid} />)}
                 </div>
             </div>
         </div>

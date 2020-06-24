@@ -83,7 +83,7 @@ const NavBar = (props) => {
 
                 <div className='column'>
                     <button onClick={() => props.history.push('/covid-facts')} className="nav-buttons">COVID-19 facts</button>
-                    <button onClick={() => props.history.push('/create-user')} className="nav-buttons">Global COVID-19 updates</button>
+                    <button onClick={() => props.history.push('/global-covid-updates')} className="nav-buttons">Global COVID-19 updates</button>
                 </div>
                 
                 <div className='column'>
