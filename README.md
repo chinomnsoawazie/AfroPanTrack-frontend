@@ -183,7 +183,6 @@ To acess the frontend, go to <code>http://localhost:3001</code></p>
  <h1 id="credits">Credits</h1>
     <p>
  <ul>
-  <li><a href="https://jwt.io/introduction/">JWT Auth</a></li>
   <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
     <li><a href="https://rubyonrails.org/">Rails</a></li>
   <li><a href="https://rubygems.org/gems/dotenv-rails/versions/2.7.5">dotenv-rails</a></li>
